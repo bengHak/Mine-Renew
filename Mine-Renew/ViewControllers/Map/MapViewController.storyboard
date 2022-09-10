@@ -34,6 +34,25 @@
                                     <action selector="didTapQuitButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="h04-3n-G8x"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="      0m 0s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxf-E5-Rmu">
+                                <rect key="frame" x="284" y="64" width="110" height="44"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Abp-u9-uN1"/>
+                                    <constraint firstAttribute="width" constant="110" id="SNX-ok-p0z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gXB-pT-olp">
+                                <rect key="frame" x="290" y="73.5" width="26" height="25"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="RSj-WK-Q2n"/>
+                                    <constraint firstAttribute="width" constant="26" id="pst-cW-PKB"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -42,20 +61,29 @@
                             <constraint firstItem="JlA-9V-xXY" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="HVA-fq-bLd"/>
                             <constraint firstAttribute="trailing" secondItem="JlA-9V-xXY" secondAttribute="trailing" id="JvE-YI-bct"/>
                             <constraint firstItem="mhB-9h-vYS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Tve-1D-0iI"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="yxf-E5-Rmu" secondAttribute="trailing" constant="20" id="Uaj-iz-hbp"/>
                             <constraint firstItem="JlA-9V-xXY" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="V7O-Ar-6wK"/>
                             <constraint firstAttribute="bottom" secondItem="JlA-9V-xXY" secondAttribute="bottom" id="W7E-Vb-z5C"/>
+                            <constraint firstItem="yxf-E5-Rmu" firstAttribute="top" secondItem="mhB-9h-vYS" secondAttribute="top" id="Y3f-c0-bCz"/>
+                            <constraint firstItem="yxf-E5-Rmu" firstAttribute="leading" secondItem="gXB-pT-olp" secondAttribute="trailing" constant="-32" id="bWd-mT-W08"/>
+                            <constraint firstItem="gXB-pT-olp" firstAttribute="centerY" secondItem="yxf-E5-Rmu" secondAttribute="centerY" id="od9-q4-Tdn"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="JlA-9V-xXY" id="IYo-jJ-Eae"/>
+                        <outlet property="walkingTimeLabel" destination="yxf-E5-Rmu" id="SeQ-oG-1kr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="99" y="129"/>
+            <point key="canvasLocation" x="98.550724637681171" y="128.57142857142856"/>
         </scene>
     </scenes>
     <resources>
+        <image name="clock" catalog="system" width="128" height="121"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

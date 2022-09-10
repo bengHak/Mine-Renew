@@ -12,20 +12,23 @@ import CoreLocation
 final class MapViewController: UIViewController {
     // MARK: - UI properties
     @IBOutlet weak var mapView: MKMapView!
-    
+    @IBOutlet weak var walkingTimeLabel: UILabel!
+
     // MARK: - Properties
     private let locationManager = CLLocationManager()
-    private var previousCoordinate: CLLocationCoordinate2D?
     private var startingCoordinate: CLLocationCoordinate2D?
     private var boundary: [CLLocationCoordinate2D] = []
     private var startTime: Date?
-    private var endTime: Date?
     private var returnToCurrentLocationTimer: Timer?
+    private var walkingTimer: Timer?
+    private var elapsedSeconds: Int = 0
+    private var isFinished: Bool = false
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setTimeLabel()
         setLocationManager()
         setMapView()
     }
@@ -38,6 +41,13 @@ final class MapViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.startTime = Date()
+        self.walkingTimer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(updateWalkingTimeLabel),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
     // MARK: - IBActions
@@ -46,6 +56,12 @@ final class MapViewController: UIViewController {
     }
 
     // MARK: - Helpers
+    func setTimeLabel() {
+        walkingTimeLabel.textColor = .white
+        walkingTimeLabel.backgroundColor = .black.withAlphaComponent(0.7)
+        walkingTimeLabel.layer.cornerRadius = 10
+        walkingTimeLabel.clipsToBounds = true
+    }
     func setLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
@@ -66,6 +82,7 @@ final class MapViewController: UIViewController {
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.mapType = MKMapType.standard
+        mapView.showsCompass = false
         viewCurrentLocation()
     }
 
@@ -91,7 +108,7 @@ final class MapViewController: UIViewController {
     }
 
     func addPolyline(with location: CLLocation) {
-        guard let previousCoordinate = self.previousCoordinate else {
+        guard let previousCoordinate = self.boundary.last else {
             return
         }
         let longtitude: CLLocationDegrees = location.coordinate.longitude
@@ -101,18 +118,20 @@ final class MapViewController: UIViewController {
         let point2 = CLLocationCoordinate2DMake(latitude, longtitude)
         let distacne: CLLocationDistance = MKMapPoint(point1).distance(to: MKMapPoint(point2))
         print("이전 좌표와의 거리: \(Int(distacne))m")
-        if distacne < 50 {
+        if distacne > 20 {
             return
         }
         points.append(point1)
         points.append(point2)
         let lineDraw = MKPolyline(coordinates: points, count:points.count)
         self.mapView.addOverlay(lineDraw)
+        self.boundary.append(location.coordinate)
     }
 
     /// 3분 이상 산착했을 때 부터 폴리곤을 확인한다.
     func checkPolygonIsMade(with location: CLLocation) {
-        guard let startingCoordinate = startingCoordinate,
+        guard !isFinished,
+              let startingCoordinate = startingCoordinate,
               let startTime = startTime,
               startTime.timeIntervalSinceNow < -180 else {
             return
@@ -126,37 +145,69 @@ final class MapViewController: UIViewController {
             return
         }
         
+        self.boundary.append(CLLocationCoordinate2D(latitude: 36.7394, longitude: 127.17058))
         let polygon = MKPolygon(
             coordinates: self.boundary,
             count: self.boundary.count
         )
         mapView.addOverlay(polygon)
+        moveCameraToCenterOfPolygon(with: polygon)
+        isFinished.toggle()
+        setTrackingDisabled()
+    }
+
+    func setTrackingDisabled() {
+        mapView.setUserTrackingMode(.none, animated: false)
+        mapView.showsUserLocation = false
+        locationManager.stopUpdatingLocation()
+        returnToCurrentLocationTimer?.invalidate()
+        walkingTimer?.invalidate()
+    }
+
+    func moveCameraToCenterOfPolygon(with polygon: MKPolygon) {
+        mapView.visibleMapRect = polygon.boundingMapRect
+    }
+
+    @objc
+    func updateWalkingTimeLabel() {
+        self.elapsedSeconds += 1
+        self.walkingTimeLabel.text = "      \(Int(exactly: self.elapsedSeconds / 3600)!)h \(Int(exactly: self.elapsedSeconds / 60)!)m"
     }
 }
 
+// MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        guard let polyLine = overlay as? MKPolyline else {
-            print("can't draw polyline")
-            return MKOverlayRenderer()
+        if overlay is MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = AppColor.junction_green.color
+            renderer.lineWidth = 5.0
+            renderer.alpha = 1.0
+            return renderer
         }
-
-        let renderer = MKPolylineRenderer(polyline: polyLine)
-        renderer.strokeColor = .orange
-        renderer.lineWidth = 5.0
-        renderer.alpha = 1.0
         
-        return renderer
+        if overlay is MKPolygon {
+            let polygonView = MKPolygonRenderer(overlay: overlay)
+            polygonView.strokeColor = AppColor.junction_green.color
+            polygonView.fillColor = AppColor.junction_second_green.color.withAlphaComponent(0.5)
+            polygonView.lineWidth = 5.0
+            return polygonView
+        }
+        
+        print("can't draw polyline")
+        return MKOverlayRenderer()
     }
 
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        guard mapView.userTrackingMode != .followWithHeading else {
+        guard !isFinished,
+              mapView.userTrackingMode != .followWithHeading else {
             return
         }
         setReturnTimer()
     }
 }
 
+// MARK: - CLLocationManagerDelegate
 extension MapViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
@@ -181,7 +232,7 @@ extension MapViewController: CLLocationManagerDelegate {
         checkPolygonIsMade(with: location)
         if self.startingCoordinate == nil {
             self.startingCoordinate = location.coordinate
+            self.boundary.append(location.coordinate)
         }
-        self.previousCoordinate = location.coordinate
     }
 }

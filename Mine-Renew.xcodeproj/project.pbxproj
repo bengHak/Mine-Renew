@@ -19,6 +19,8 @@
 		60EFE42B28CC4811001A272C /* MapViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60EFE42A28CC4811001A272C /* MapViewController.storyboard */; };
 		60EFE42D28CC4819001A272C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFE42C28CC4819001A272C /* MapViewController.swift */; };
 		60EFE43128CC4F28001A272C /* MKMapView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFE43028CC4F28001A272C /* MKMapView+Ext.swift */; };
+		60EFE43328CC6D7A001A272C /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFE43228CC6D7A001A272C /* AppColor.swift */; };
+		60EFE43528CC6DB9001A272C /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFE43428CC6DB9001A272C /* UIColor+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		60EFE42A28CC4811001A272C /* MapViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapViewController.storyboard; sourceTree = "<group>"; };
 		60EFE42C28CC4819001A272C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		60EFE43028CC4F28001A272C /* MKMapView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Ext.swift"; sourceTree = "<group>"; };
+		60EFE43228CC6D7A001A272C /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		60EFE43428CC6DB9001A272C /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,7 @@
 		601FC23128CAF46F008E02BD /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				60EFE43228CC6D7A001A272C /* AppColor.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				60EFE43028CC4F28001A272C /* MKMapView+Ext.swift */,
+				60EFE43428CC6DB9001A272C /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -364,7 +370,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60EFE43528CC6DB9001A272C /* UIColor+Ext.swift in Sources */,
 				601FC20228CAF416008E02BD /* MainViewController.swift in Sources */,
+				60EFE43328CC6D7A001A272C /* AppColor.swift in Sources */,
 				601FC1FE28CAF416008E02BD /* AppDelegate.swift in Sources */,
 				60EFE43128CC4F28001A272C /* MKMapView+Ext.swift in Sources */,
 				601FC20028CAF416008E02BD /* SceneDelegate.swift in Sources */,
