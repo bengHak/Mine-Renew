@@ -18,6 +18,7 @@
 		601FC22128CAF417008E02BD /* Mine_RenewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601FC22028CAF417008E02BD /* Mine_RenewUITestsLaunchTests.swift */; };
 		60EFE42B28CC4811001A272C /* MapViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60EFE42A28CC4811001A272C /* MapViewController.storyboard */; };
 		60EFE42D28CC4819001A272C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFE42C28CC4819001A272C /* MapViewController.swift */; };
+		60EFE43128CC4F28001A272C /* MKMapView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFE43028CC4F28001A272C /* MKMapView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		601FC22028CAF417008E02BD /* Mine_RenewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_RenewUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		60EFE42A28CC4811001A272C /* MapViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapViewController.storyboard; sourceTree = "<group>"; };
 		60EFE42C28CC4819001A272C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		60EFE43028CC4F28001A272C /* MKMapView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 		601FC23228CAF477008E02BD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				60EFE43028CC4F28001A272C /* MKMapView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 			files = (
 				601FC20228CAF416008E02BD /* MainViewController.swift in Sources */,
 				601FC1FE28CAF416008E02BD /* AppDelegate.swift in Sources */,
+				60EFE43128CC4F28001A272C /* MKMapView+Ext.swift in Sources */,
 				601FC20028CAF416008E02BD /* SceneDelegate.swift in Sources */,
 				60EFE42D28CC4819001A272C /* MapViewController.swift in Sources */,
 			);

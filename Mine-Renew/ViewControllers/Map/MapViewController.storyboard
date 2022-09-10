@@ -25,11 +25,14 @@
                                     <constraint firstAttribute="height" constant="40" id="S38-cR-Wfc"/>
                                     <constraint firstAttribute="width" constant="100" id="Uiu-jL-Yek"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Quit">
+                                <buttonConfiguration key="configuration" style="filled" title="Quit" cornerStyle="large">
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                    <color key="baseBackgroundColor" systemColor="systemRedColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapQuitButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="h04-3n-G8x"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -43,6 +46,9 @@
                             <constraint firstAttribute="bottom" secondItem="JlA-9V-xXY" secondAttribute="bottom" id="W7E-Vb-z5C"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="JlA-9V-xXY" id="IYo-jJ-Eae"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
