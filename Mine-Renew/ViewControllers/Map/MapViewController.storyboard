@@ -64,28 +64,50 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLl-6W-gEh">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBI-Yx-qRf">
+                                        <rect key="frame" x="165" y="362" width="60" height="120"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="fBI-Yx-qRf" firstAttribute="centerY" secondItem="zLl-6W-gEh" secondAttribute="centerY" id="5EW-Pp-uf1"/>
+                                    <constraint firstItem="fBI-Yx-qRf" firstAttribute="centerX" secondItem="zLl-6W-gEh" secondAttribute="centerX" id="zdn-zY-M0Y"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="UxR-e5-5cN" secondAttribute="trailing" constant="20" id="0cU-LJ-sRz"/>
+                            <constraint firstItem="zLl-6W-gEh" firstAttribute="trailing" secondItem="JlA-9V-xXY" secondAttribute="trailing" id="2x4-X4-Ahv"/>
                             <constraint firstItem="mhB-9h-vYS" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="C0r-R9-9Ml"/>
                             <constraint firstItem="JlA-9V-xXY" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="HVA-fq-bLd"/>
                             <constraint firstItem="UxR-e5-5cN" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="-30" id="HzE-Ee-KQg"/>
                             <constraint firstAttribute="trailing" secondItem="JlA-9V-xXY" secondAttribute="trailing" id="JvE-YI-bct"/>
+                            <constraint firstItem="zLl-6W-gEh" firstAttribute="leading" secondItem="JlA-9V-xXY" secondAttribute="leading" id="RvI-aK-yyJ"/>
                             <constraint firstItem="mhB-9h-vYS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Tve-1D-0iI"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="yxf-E5-Rmu" secondAttribute="trailing" constant="20" id="Uaj-iz-hbp"/>
                             <constraint firstItem="JlA-9V-xXY" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="V7O-Ar-6wK"/>
+                            <constraint firstItem="zLl-6W-gEh" firstAttribute="bottom" secondItem="JlA-9V-xXY" secondAttribute="bottom" id="VZI-1A-EWd"/>
                             <constraint firstAttribute="bottom" secondItem="JlA-9V-xXY" secondAttribute="bottom" id="W7E-Vb-z5C"/>
                             <constraint firstItem="yxf-E5-Rmu" firstAttribute="top" secondItem="mhB-9h-vYS" secondAttribute="top" id="Y3f-c0-bCz"/>
                             <constraint firstItem="yxf-E5-Rmu" firstAttribute="leading" secondItem="gXB-pT-olp" secondAttribute="trailing" constant="-32" id="bWd-mT-W08"/>
                             <constraint firstItem="gXB-pT-olp" firstAttribute="centerY" secondItem="yxf-E5-Rmu" secondAttribute="centerY" id="od9-q4-Tdn"/>
+                            <constraint firstItem="zLl-6W-gEh" firstAttribute="top" secondItem="JlA-9V-xXY" secondAttribute="top" id="qzD-TX-Gbu"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="countDownLabel" destination="fBI-Yx-qRf" id="m9N-tZ-7Mf"/>
                         <outlet property="mapView" destination="JlA-9V-xXY" id="IYo-jJ-Eae"/>
                         <outlet property="walkingSpeedLabel" destination="UxR-e5-5cN" id="AWp-Bz-SLj"/>
                         <outlet property="walkingTimeLabel" destination="yxf-E5-Rmu" id="SeQ-oG-1kr"/>
+                        <outlet property="whiteOverlayView" destination="zLl-6W-gEh" id="saZ-xn-5kI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

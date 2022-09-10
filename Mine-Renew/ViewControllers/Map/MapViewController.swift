@@ -15,14 +15,18 @@ final class MapViewController: UIViewController {
     @IBOutlet weak var walkingTimeLabel: UILabel!
     @IBOutlet weak var walkingSpeedLabel: UILabel!
     
+    @IBOutlet weak var whiteOverlayView: UIView!
+    @IBOutlet weak var countDownLabel: UILabel!
     // MARK: - Properties
     private let locationManager = CLLocationManager()
     private var startingCoordinate: CLLocationCoordinate2D?
     private var boundary: [CLLocationCoordinate2D] = []
     private var startTime: Date?
+    private var initialCountDownTimer: Timer?
     private var returnToCurrentLocationTimer: Timer?
     private var walkingTimer: Timer?
     private var elapsedSeconds: Int = 0
+    private var isStarted: Bool = false
     private var isFinished: Bool = false
     private let feedbackGenerator = UINotificationFeedbackGenerator()
     private let userNotiCenter = UNUserNotificationCenter.current()
@@ -43,7 +47,43 @@ final class MapViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        startCountDown()
+    }
+    
+    // MARK: - IBActions
+    @IBAction func didTapQuitButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    // MARK: - Helpers
+    func startCountDown() {
         self.locationManager.startUpdatingLocation()
+        initialCountDownTimer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(countDown),
+            userInfo: nil,
+            repeats: true
+        )
+        feedbackGenerator.notificationOccurred(.success)
+    }
+
+    @objc
+    func countDown() {
+        if let text = countDownLabel.text,
+           let count = Int(text),
+           count > 1 {
+            countDownLabel.text = "\(count - 1)"
+            feedbackGenerator.notificationOccurred(.success)
+        } else {
+            whiteOverlayView.isHidden = true
+            initialCountDownTimer?.invalidate()
+            initialCountDownTimer = nil
+            startWalking()
+        }
+    }
+
+    func startWalking() {
         self.startTime = Date()
         self.walkingTimer = Timer.scheduledTimer(
             timeInterval: 1,
@@ -54,13 +94,7 @@ final class MapViewController: UIViewController {
         )
         feedbackGenerator.notificationOccurred(.success)
     }
-    
-    // MARK: - IBActions
-    @IBAction func didTapQuitButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
 
-    // MARK: - Helpers
     func setTimeLabel() {
         walkingTimeLabel.textColor = .white
         walkingTimeLabel.backgroundColor = .black.withAlphaComponent(0.7)
@@ -291,6 +325,7 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations[locations.count - 1]
         print(location.speed)
+        if location.speed < 0 || !isStarted { return }
         walkingSpeedLabel.text = "\(String(format: "%.2f", location.speed))m/s"
         if location.speed > 3 {
             print("너무 빠름")
