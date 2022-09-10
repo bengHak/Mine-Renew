@@ -13,7 +13,8 @@ final class MapViewController: UIViewController {
     // MARK: - UI properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var walkingTimeLabel: UILabel!
-
+    @IBOutlet weak var walkingSpeedLabel: UILabel!
+    
     // MARK: - Properties
     private let locationManager = CLLocationManager()
     private var startingCoordinate: CLLocationCoordinate2D?
@@ -23,6 +24,8 @@ final class MapViewController: UIViewController {
     private var walkingTimer: Timer?
     private var elapsedSeconds: Int = 0
     private var isFinished: Bool = false
+    private let feedbackGenerator = UINotificationFeedbackGenerator()
+    private let userNotiCenter = UNUserNotificationCenter.current()
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
@@ -35,11 +38,12 @@ final class MapViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        locationManager.stopUpdatingLocation()
+        setTrackingDisabled()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.locationManager.startUpdatingLocation()
         self.startTime = Date()
         self.walkingTimer = Timer.scheduledTimer(
             timeInterval: 1,
@@ -48,6 +52,7 @@ final class MapViewController: UIViewController {
             userInfo: nil,
             repeats: true
         )
+        feedbackGenerator.notificationOccurred(.success)
     }
     
     // MARK: - IBActions
@@ -61,10 +66,14 @@ final class MapViewController: UIViewController {
         walkingTimeLabel.backgroundColor = .black.withAlphaComponent(0.7)
         walkingTimeLabel.layer.cornerRadius = 10
         walkingTimeLabel.clipsToBounds = true
+        
+        walkingSpeedLabel.layer.cornerRadius = 10
+        walkingSpeedLabel.clipsToBounds = true
     }
     func setLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.allowsBackgroundLocationUpdates = true
         getLocationUsagePermission()
     }
 
@@ -81,14 +90,18 @@ final class MapViewController: UIViewController {
     func setMapView() {
         mapView.delegate = self
         mapView.showsUserLocation = true
-        mapView.mapType = MKMapType.standard
+        mapView.mapType = .mutedStandard
         mapView.showsCompass = false
+        mapView.showsTraffic = false
+        mapView.showsBuildings = false
+        mapView.showsLargeContentViewer = false
+        mapView.setCameraZoomRange(.init(maxCenterCoordinateDistance: 1000), animated: false)
         viewCurrentLocation()
     }
 
     @objc
     func viewCurrentLocation() {
-        mapView.setUserTrackingMode(.followWithHeading, animated: true)
+        mapView.setUserTrackingMode(.followWithHeading, animated: false)
     }
 
     func setReturnTimer() {
@@ -117,10 +130,8 @@ final class MapViewController: UIViewController {
         let point1 = CLLocationCoordinate2DMake(previousCoordinate.latitude, previousCoordinate.longitude)
         let point2 = CLLocationCoordinate2DMake(latitude, longtitude)
         let distacne: CLLocationDistance = MKMapPoint(point1).distance(to: MKMapPoint(point2))
-        print("이전 좌표와의 거리: \(Int(distacne))m")
-        if distacne > 20 {
-            return
-        }
+        // 이전 좌표와 2미터 이상 차이 날 때 그리기
+        if distacne < 2 { return }
         points.append(point1)
         points.append(point2)
         let lineDraw = MKPolyline(coordinates: points, count:points.count)
@@ -141,22 +152,21 @@ final class MapViewController: UIViewController {
         let point2 = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
         let distacne: CLLocationDistance = MKMapPoint(point1).distance(to: MKMapPoint(point2))
         
-        if distacne > 20 {
-            return
-        }
+        // 시작 지점에서 3미터 미만으로 가까워졌을 때
+        if distacne > 3 { return }
         
-        self.boundary.append(CLLocationCoordinate2D(latitude: 36.7394, longitude: 127.17058))
         let polygon = MKPolygon(
             coordinates: self.boundary,
             count: self.boundary.count
         )
         mapView.addOverlay(polygon)
         moveCameraToCenterOfPolygon(with: polygon)
-        isFinished.toggle()
+        requestSendFinishNoti()
         setTrackingDisabled()
     }
 
     func setTrackingDisabled() {
+        isFinished = true
         mapView.setUserTrackingMode(.none, animated: false)
         mapView.showsUserLocation = false
         locationManager.stopUpdatingLocation()
@@ -165,13 +175,65 @@ final class MapViewController: UIViewController {
     }
 
     func moveCameraToCenterOfPolygon(with polygon: MKPolygon) {
+        mapView.setCameraZoomRange(.init(minCenterCoordinateDistance: 0), animated: true)
         mapView.visibleMapRect = polygon.boundingMapRect
+        mapView.region.span.latitudeDelta = mapView.region.span.latitudeDelta * 1.2
+        feedbackGenerator.notificationOccurred(.success)
     }
 
     @objc
     func updateWalkingTimeLabel() {
         self.elapsedSeconds += 1
         self.walkingTimeLabel.text = "      \(Int(exactly: self.elapsedSeconds / 3600)!)h \(Int(exactly: self.elapsedSeconds / 60)!)m"
+    }
+
+    func showAlert() {
+        if isFinished { return }
+        setTrackingDisabled()
+        let alert = UIAlertController(title: "너무 빨라용", message: "초속 3미터 이하로 걸어주세요", preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }
+        alert.addAction(action)
+        present(alert, animated: true)
+        feedbackGenerator.notificationOccurred(.warning)
+        requestSendTooFastNoti()
+    }
+    
+    func requestSendTooFastNoti() {
+        let notiContent = UNMutableNotificationContent()
+        notiContent.title = "⚠️ 과속 알림!"
+        notiContent.body = "초속 3미터보다 빠르게 산책하면 안됩니다."
+        notiContent.sound = .default
+
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: notiContent,
+            trigger: nil
+        )
+        
+        userNotiCenter.add(request) { (error) in
+            print(#function, error?.localizedDescription ?? "")
+        }
+    }
+    
+    func requestSendFinishNoti() {
+        let notiContent = UNMutableNotificationContent()
+        notiContent.title = "✅ 산책 완료!"
+        notiContent.body = "산책 구역을 확인하세요!"
+        notiContent.sound = .default
+
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: notiContent,
+            trigger: nil
+        )
+        
+        userNotiCenter.add(request) { (error) in
+            print(#function, error?.localizedDescription ?? "")
+        }
     }
 }
 
@@ -228,6 +290,13 @@ extension MapViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations[locations.count - 1]
+        print(location.speed)
+        walkingSpeedLabel.text = "\(String(format: "%.2f", location.speed))m/s"
+        if location.speed > 3 {
+            print("너무 빠름")
+            showAlert()
+        }
+
         addPolyline(with: location)
         checkPolygonIsMade(with: location)
         if self.startingCoordinate == nil {

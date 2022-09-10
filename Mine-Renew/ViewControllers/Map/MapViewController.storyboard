@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,11 +13,11 @@
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="MapViewController" customModule="Mine_Renew" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JlA-9V-xXY">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhB-9h-vYS">
                                 <rect key="frame" x="20" y="64" width="100" height="40"/>
@@ -34,8 +34,8 @@
                                     <action selector="didTapQuitButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="h04-3n-G8x"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="      0m 0s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxf-E5-Rmu">
-                                <rect key="frame" x="284" y="64" width="110" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="      0h 0m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxf-E5-Rmu">
+                                <rect key="frame" x="260" y="64" width="110" height="44"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Abp-u9-uN1"/>
@@ -46,19 +46,32 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gXB-pT-olp">
-                                <rect key="frame" x="290" y="73.5" width="26" height="25"/>
+                                <rect key="frame" x="266" y="74" width="26" height="24.666666666666671"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="RSj-WK-Q2n"/>
                                     <constraint firstAttribute="width" constant="26" id="pst-cW-PKB"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0m/s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UxR-e5-5cN">
+                                <rect key="frame" x="270" y="740" width="100" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Cse-Lp-EIc"/>
+                                    <constraint firstAttribute="height" constant="40" id="u20-ax-JzA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="UxR-e5-5cN" secondAttribute="trailing" constant="20" id="0cU-LJ-sRz"/>
                             <constraint firstItem="mhB-9h-vYS" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="C0r-R9-9Ml"/>
                             <constraint firstItem="JlA-9V-xXY" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="HVA-fq-bLd"/>
+                            <constraint firstItem="UxR-e5-5cN" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="-30" id="HzE-Ee-KQg"/>
                             <constraint firstAttribute="trailing" secondItem="JlA-9V-xXY" secondAttribute="trailing" id="JvE-YI-bct"/>
                             <constraint firstItem="mhB-9h-vYS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Tve-1D-0iI"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="yxf-E5-Rmu" secondAttribute="trailing" constant="20" id="Uaj-iz-hbp"/>
@@ -71,6 +84,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="JlA-9V-xXY" id="IYo-jJ-Eae"/>
+                        <outlet property="walkingSpeedLabel" destination="UxR-e5-5cN" id="AWp-Bz-SLj"/>
                         <outlet property="walkingTimeLabel" destination="yxf-E5-Rmu" id="SeQ-oG-1kr"/>
                     </connections>
                 </viewController>
