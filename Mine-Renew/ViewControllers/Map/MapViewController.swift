@@ -60,47 +60,7 @@ final class MapViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
-    // MARK: - Helpers
-    func startCountDown() {
-        self.locationManager.startUpdatingLocation()
-        initialCountDownTimer = Timer.scheduledTimer(
-            timeInterval: 1,
-            target: self,
-            selector: #selector(countDown),
-            userInfo: nil,
-            repeats: true
-        )
-        feedbackGenerator.notificationOccurred(.success)
-    }
-
-    @objc
-    func countDown() {
-        if let text = countDownLabel.text,
-           let count = Int(text),
-           count > 1 {
-            countDownLabel.text = "\(count - 1)"
-            feedbackGenerator.notificationOccurred(.success)
-        } else {
-            whiteOverlayView.isHidden = true
-            initialCountDownTimer?.invalidate()
-            initialCountDownTimer = nil
-            startWalking()
-        }
-    }
-
-    func startWalking() {
-        self.isStarted = true
-        self.startTime = Date()
-        self.walkingTimer = Timer.scheduledTimer(
-            timeInterval: 1,
-            target: self,
-            selector: #selector(updateWalkingTimeLabel),
-            userInfo: nil,
-            repeats: true
-        )
-        feedbackGenerator.notificationOccurred(.success)
-    }
-
+    // MARK: - Setup
     func setTimeLabel() {
         walkingTimeLabel.textColor = .white
         walkingTimeLabel.backgroundColor = .black.withAlphaComponent(0.7)
@@ -117,16 +77,6 @@ final class MapViewController: UIViewController {
         getLocationUsagePermission()
     }
 
-    func getLocationUsagePermission() {
-        let authorizedStatus: CLAuthorizationStatus = self.locationManager.authorizationStatus
-        if authorizedStatus != .authorizedAlways,
-           authorizedStatus != .authorizedWhenInUse {
-            self.locationManager.requestWhenInUseAuthorization()
-        } else {
-            self.locationManager.startUpdatingLocation()
-        }
-    }
-
     func setMapView() {
         mapView.delegate = self
         mapView.showsUserLocation = true
@@ -139,9 +89,67 @@ final class MapViewController: UIViewController {
         viewCurrentLocation()
     }
 
+    // MARK: - Timer functions
+    @objc
+    func countDown() {
+        if let text = countDownLabel.text,
+           let count = Int(text),
+           count > 1 {
+            countDownLabel.text = "\(count - 1)"
+            feedbackGenerator.notificationOccurred(.success)
+        } else {
+            whiteOverlayView.isHidden = true
+            initialCountDownTimer?.invalidate()
+            initialCountDownTimer = nil
+            startWalking()
+        }
+    }
+
     @objc
     func viewCurrentLocation() {
         mapView.setUserTrackingMode(.followWithHeading, animated: false)
+    }
+
+    @objc
+    func checkIsActive() {
+        if UIApplication.shared.applicationState == .active {
+            captureTimer?.invalidate()
+            captureTimer = nil
+            completeModal.imageView.image = mapView.takeCapture()
+            completeModal.isHidden = false
+        }
+    }
+
+    @objc
+    func updateWalkingTimeLabel() {
+        self.elapsedSeconds += 1
+        self.walkingTimeLabel.text = "      \(Int(exactly: self.elapsedSeconds / 3600)!)h \(Int(exactly: self.elapsedSeconds / 60)!)m"
+    }
+    
+    // MARK: - Helpers
+    func startCountDown() {
+        self.locationManager.startUpdatingLocation()
+        initialCountDownTimer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(countDown),
+            userInfo: nil,
+            repeats: true
+        )
+        feedbackGenerator.notificationOccurred(.success)
+    }
+
+    func startWalking() {
+        self.isStarted = true
+        self.startTime = Date()
+        self.walkingTimer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(updateWalkingTimeLabel),
+            userInfo: nil,
+            repeats: true
+        )
+        feedbackGenerator.notificationOccurred(.success)
     }
 
     func setReturnTimer() {
@@ -160,6 +168,87 @@ final class MapViewController: UIViewController {
         self.returnToCurrentLocationTimer = timer
     }
 
+    func getLocationUsagePermission() {
+        let authorizedStatus: CLAuthorizationStatus = self.locationManager.authorizationStatus
+        if authorizedStatus != .authorizedAlways,
+           authorizedStatus != .authorizedWhenInUse {
+            self.locationManager.requestWhenInUseAuthorization()
+        } else {
+            self.locationManager.startUpdatingLocation()
+        }
+    }
+
+    func setTrackingDisabled() {
+        isFinished = true
+        mapView.setUserTrackingMode(.none, animated: false)
+        mapView.showsUserLocation = false
+        locationManager.stopUpdatingLocation()
+        returnToCurrentLocationTimer?.invalidate()
+        walkingTimer?.invalidate()
+    }
+
+    func moveCameraToCenterOfPolygon(with polygon: MKPolygon) {
+        mapView.setCameraZoomRange(.init(minCenterCoordinateDistance: 0), animated: true)
+        mapView.visibleMapRect = polygon.boundingMapRect
+        if polygon.boundingMapRect.width < polygon.boundingMapRect.height {
+            mapView.region.span.longitudeDelta = mapView.region.span.longitudeDelta * 2
+        } else {
+            mapView.region.span.latitudeDelta = mapView.region.span.latitudeDelta * 1.2
+        }
+        feedbackGenerator.notificationOccurred(.success)
+    }
+
+    func showAlert() {
+        if isFinished { return }
+        setTrackingDisabled()
+        let alert = UIAlertController(title: "너무 빨라용", message: "초속 3미터 이하로 걸어주세요", preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }
+        alert.addAction(action)
+        present(alert, animated: true)
+        feedbackGenerator.notificationOccurred(.warning)
+        requestSendTooFastNoti()
+    }
+    
+    // MARK: - Send notification
+    func requestSendTooFastNoti() {
+        let notiContent = UNMutableNotificationContent()
+        notiContent.title = "⚠️ 과속 알림!"
+        notiContent.body = "초속 3미터보다 빠르게 산책하면 안됩니다."
+        notiContent.sound = .default
+
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: notiContent,
+            trigger: nil
+        )
+        
+        userNotiCenter.add(request) { (error) in
+            print(#function, error?.localizedDescription ?? "")
+        }
+    }
+    
+    func requestSendFinishNoti() {
+        let notiContent = UNMutableNotificationContent()
+        notiContent.title = "✅ 산책 완료!"
+        notiContent.body = "산책 구역을 확인하세요!"
+        notiContent.sound = .default
+
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: notiContent,
+            trigger: nil
+        )
+        
+        userNotiCenter.add(request) { (error) in
+            print(#function, error?.localizedDescription ?? "")
+        }
+    }
+
+    // MARK: - Draw on mapview
     func addPolyline(with location: CLLocation) {
         guard let previousCoordinate = self.boundary.last else {
             return
@@ -213,98 +302,6 @@ final class MapViewController: UIViewController {
         requestSendFinishNoti()
     }
 
-    func setTrackingDisabled() {
-        isFinished = true
-        mapView.setUserTrackingMode(.none, animated: false)
-        mapView.showsUserLocation = false
-        locationManager.stopUpdatingLocation()
-        returnToCurrentLocationTimer?.invalidate()
-        walkingTimer?.invalidate()
-    }
-
-    func moveCameraToCenterOfPolygon(with polygon: MKPolygon) {
-        mapView.setCameraZoomRange(.init(minCenterCoordinateDistance: 0), animated: true)
-        mapView.visibleMapRect = polygon.boundingMapRect
-        if polygon.boundingMapRect.width < polygon.boundingMapRect.height {
-            mapView.region.span.longitudeDelta = mapView.region.span.longitudeDelta * 2
-        } else {
-            mapView.region.span.latitudeDelta = mapView.region.span.latitudeDelta * 1.2
-        }
-        feedbackGenerator.notificationOccurred(.success)
-    }
-
-    @objc
-    func updateWalkingTimeLabel() {
-        self.elapsedSeconds += 1
-        self.walkingTimeLabel.text = "      \(Int(exactly: self.elapsedSeconds / 3600)!)h \(Int(exactly: self.elapsedSeconds / 60)!)m"
-    }
-
-    func showAlert() {
-        if isFinished { return }
-        setTrackingDisabled()
-        let alert = UIAlertController(title: "너무 빨라용", message: "초속 3미터 이하로 걸어주세요", preferredStyle: .alert)
-        let action = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
-            DispatchQueue.main.async {
-                self?.navigationController?.popViewController(animated: true)
-            }
-        }
-        alert.addAction(action)
-        present(alert, animated: true)
-        feedbackGenerator.notificationOccurred(.warning)
-        requestSendTooFastNoti()
-    }
-    
-    func requestSendTooFastNoti() {
-        let notiContent = UNMutableNotificationContent()
-        notiContent.title = "⚠️ 과속 알림!"
-        notiContent.body = "초속 3미터보다 빠르게 산책하면 안됩니다."
-        notiContent.sound = .default
-
-        let request = UNNotificationRequest(
-            identifier: UUID().uuidString,
-            content: notiContent,
-            trigger: nil
-        )
-        
-        userNotiCenter.add(request) { (error) in
-            print(#function, error?.localizedDescription ?? "")
-        }
-    }
-    
-    func requestSendFinishNoti() {
-        let notiContent = UNMutableNotificationContent()
-        notiContent.title = "✅ 산책 완료!"
-        notiContent.body = "산책 구역을 확인하세요!"
-        notiContent.sound = .default
-
-        let request = UNNotificationRequest(
-            identifier: UUID().uuidString,
-            content: notiContent,
-            trigger: nil
-        )
-        
-        userNotiCenter.add(request) { (error) in
-            print(#function, error?.localizedDescription ?? "")
-        }
-    }
-
-    func takeCapture() -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(mapView.bounds.size, false, 0)
-        mapView.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image ?? UIImage()
-    }
-
-    @objc
-    func checkIsActive() {
-        if UIApplication.shared.applicationState == .active {
-            captureTimer?.invalidate()
-            captureTimer = nil
-            completeModal.imageView.image = takeCapture()
-            completeModal.isHidden = false
-        }
-    }
 }
 
 // MARK: - MKMapViewDelegate
