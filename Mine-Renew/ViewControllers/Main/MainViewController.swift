@@ -8,10 +8,14 @@
 import UIKit
 import Lottie
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
 
+    // MARK: - UI properties
     private let mineLottie = AnimationView(name: "Mine")
-
+    
+    // MARK: - Properties
+    
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMine()
@@ -23,7 +27,11 @@ class MainViewController: UIViewController {
         mineLottie.loopMode = .loop
         mineLottie.play()
     }
-    
+    // MARK: - Helpers
+    @IBAction func didTapRank(_ sender: Any) {
+        print("did tap rank")
+    }
+
     func setupMine() {
         view.addSubview(mineLottie)
         mineLottie.translatesAutoresizingMaskIntoConstraints = false
