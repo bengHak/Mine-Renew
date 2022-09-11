@@ -16,6 +16,9 @@
 		601FC21528CAF417008E02BD /* Mine_RenewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601FC21428CAF417008E02BD /* Mine_RenewTests.swift */; };
 		601FC21F28CAF417008E02BD /* Mine_RenewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601FC21E28CAF417008E02BD /* Mine_RenewUITests.swift */; };
 		601FC22128CAF417008E02BD /* Mine_RenewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601FC22028CAF417008E02BD /* Mine_RenewUITestsLaunchTests.swift */; };
+		60AB0EF428CDAC480095D921 /* AppleLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AB0EF328CDAC480095D921 /* AppleLoginViewController.swift */; };
+		60AB0EF628CDAC960095D921 /* AppleLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60AB0EF528CDAC960095D921 /* AppleLoginViewController.storyboard */; };
+		60AB0EFA28CDB4530095D921 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 60AB0EF928CDB4530095D921 /* Lottie */; };
 		60EFE42B28CC4811001A272C /* MapViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60EFE42A28CC4811001A272C /* MapViewController.storyboard */; };
 		60EFE42D28CC4819001A272C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFE42C28CC4819001A272C /* MapViewController.swift */; };
 		60EFE43128CC4F28001A272C /* MKMapView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFE43028CC4F28001A272C /* MKMapView+Ext.swift */; };
@@ -57,6 +60,9 @@
 		601FC21A28CAF417008E02BD /* Mine-RenewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mine-RenewUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		601FC21E28CAF417008E02BD /* Mine_RenewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_RenewUITests.swift; sourceTree = "<group>"; };
 		601FC22028CAF417008E02BD /* Mine_RenewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_RenewUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		60AB0EF328CDAC480095D921 /* AppleLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginViewController.swift; sourceTree = "<group>"; };
+		60AB0EF528CDAC960095D921 /* AppleLoginViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppleLoginViewController.storyboard; sourceTree = "<group>"; };
+		60AB0EF728CDAF710095D921 /* Mine-Renew.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mine-Renew.entitlements"; sourceTree = "<group>"; };
 		60EFE42A28CC4811001A272C /* MapViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapViewController.storyboard; sourceTree = "<group>"; };
 		60EFE42C28CC4819001A272C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		60EFE43028CC4F28001A272C /* MKMapView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Ext.swift"; sourceTree = "<group>"; };
@@ -72,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60AB0EFA28CDB4530095D921 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +122,7 @@
 		601FC1FC28CAF416008E02BD /* Mine-Renew */ = {
 			isa = PBXGroup;
 			children = (
+				60AB0EF728CDAF710095D921 /* Mine-Renew.entitlements */,
 				60EFE42F28CC49FC001A272C /* AppDelegate */,
 				601FC23228CAF477008E02BD /* Extensions */,
 				601FC23128CAF46F008E02BD /* Enums */,
@@ -254,6 +262,8 @@
 		60EFE43628CC7BBB001A272C /* AppleLogin */ = {
 			isa = PBXGroup;
 			children = (
+				60AB0EF328CDAC480095D921 /* AppleLoginViewController.swift */,
+				60AB0EF528CDAC960095D921 /* AppleLoginViewController.storyboard */,
 			);
 			path = AppleLogin;
 			sourceTree = "<group>";
@@ -311,6 +321,9 @@
 			dependencies = (
 			);
 			name = "Mine-Renew";
+			packageProductDependencies = (
+				60AB0EF928CDB4530095D921 /* Lottie */,
+			);
 			productName = "Mine-Renew";
 			productReference = 601FC1FA28CAF416008E02BD /* Mine-Renew.app */;
 			productType = "com.apple.product-type.application";
@@ -383,6 +396,9 @@
 				Base,
 			);
 			mainGroup = 601FC1F128CAF416008E02BD;
+			packageReferences = (
+				60AB0EF828CDB4530095D921 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 601FC1FB28CAF416008E02BD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -401,6 +417,7 @@
 			files = (
 				60EFE44128CCE9B9001A272C /* WalkingCompleteModalView.xib in Resources */,
 				60EFE42B28CC4811001A272C /* MapViewController.storyboard in Resources */,
+				60AB0EF628CDAC960095D921 /* AppleLoginViewController.storyboard in Resources */,
 				601FC20A28CAF417008E02BD /* LaunchScreen.storyboard in Resources */,
 				601FC20728CAF417008E02BD /* Assets.xcassets in Resources */,
 				601FC20528CAF416008E02BD /* Main.storyboard in Resources */,
@@ -429,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60EFE43528CC6DB9001A272C /* UIColor+Ext.swift in Sources */,
+				60AB0EF428CDAC480095D921 /* AppleLoginViewController.swift in Sources */,
 				60EFE43F28CCE995001A272C /* WalkingCompleteModalView.swift in Sources */,
 				601FC20228CAF416008E02BD /* MainViewController.swift in Sources */,
 				60EFE43328CC6D7A001A272C /* AppColor.swift in Sources */,
@@ -611,6 +629,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Mine-Renew/Mine-Renew.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92NGUT4BRA;
@@ -642,6 +661,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Mine-Renew/Mine-Renew.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92NGUT4BRA;
@@ -784,6 +804,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		60AB0EF828CDB4530095D921 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		60AB0EF928CDB4530095D921 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 60AB0EF828CDB4530095D921 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 601FC1F228CAF416008E02BD /* Project object */;
 }
