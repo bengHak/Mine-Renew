@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AEC643917270A217F2C54DF /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 1026808555BFD362CEFC32FD /* amplifyconfiguration.json */; };
+		28D865DE4363F0C3EDB663D6 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B8F05DE7EA343B729271A7B /* awsconfiguration.json */; };
 		601FC1FE28CAF416008E02BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601FC1FD28CAF416008E02BD /* AppDelegate.swift */; };
 		601FC20028CAF416008E02BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601FC1FF28CAF416008E02BD /* SceneDelegate.swift */; };
 		601FC20228CAF416008E02BD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601FC20128CAF416008E02BD /* MainViewController.swift */; };
@@ -16,6 +18,13 @@
 		601FC21528CAF417008E02BD /* Mine_RenewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601FC21428CAF417008E02BD /* Mine_RenewTests.swift */; };
 		601FC21F28CAF417008E02BD /* Mine_RenewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601FC21E28CAF417008E02BD /* Mine_RenewUITests.swift */; };
 		601FC22128CAF417008E02BD /* Mine_RenewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601FC22028CAF417008E02BD /* Mine_RenewUITestsLaunchTests.swift */; };
+		6075116928CE11DD0027D13F /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 6075116728CE11DD0027D13F /* amplifyconfiguration.json */; };
+		6075116A28CE11DD0027D13F /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 6075116828CE11DD0027D13F /* awsconfiguration.json */; };
+		6075116D28CE12070027D13F /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6075116C28CE12070027D13F /* Backend.swift */; };
+		6075117028CE12440027D13F /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 6075116F28CE12440027D13F /* AWSAPIPlugin */; };
+		6075117228CE12440027D13F /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 6075117128CE12440027D13F /* AWSCognitoAuthPlugin */; };
+		6075117428CE12440027D13F /* AWSDataStorePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 6075117328CE12440027D13F /* AWSDataStorePlugin */; };
+		6075117628CE12440027D13F /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 6075117528CE12440027D13F /* Amplify */; };
 		60AB0EF428CDAC480095D921 /* AppleLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AB0EF328CDAC480095D921 /* AppleLoginViewController.swift */; };
 		60AB0EF628CDAC960095D921 /* AppleLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60AB0EF528CDAC960095D921 /* AppleLoginViewController.storyboard */; };
 		60AB0EFA28CDB4530095D921 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 60AB0EF928CDB4530095D921 /* Lottie */; };
@@ -47,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1026808555BFD362CEFC32FD /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		4B8F05DE7EA343B729271A7B /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		601FC1FA28CAF416008E02BD /* Mine-Renew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mine-Renew.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		601FC1FD28CAF416008E02BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		601FC1FF28CAF416008E02BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +71,9 @@
 		601FC21A28CAF417008E02BD /* Mine-RenewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mine-RenewUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		601FC21E28CAF417008E02BD /* Mine_RenewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_RenewUITests.swift; sourceTree = "<group>"; };
 		601FC22028CAF417008E02BD /* Mine_RenewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine_RenewUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6075116728CE11DD0027D13F /* amplifyconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		6075116828CE11DD0027D13F /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		6075116C28CE12070027D13F /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
 		60AB0EF328CDAC480095D921 /* AppleLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginViewController.swift; sourceTree = "<group>"; };
 		60AB0EF528CDAC960095D921 /* AppleLoginViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppleLoginViewController.storyboard; sourceTree = "<group>"; };
 		60AB0EF728CDAF710095D921 /* Mine-Renew.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mine-Renew.entitlements"; sourceTree = "<group>"; };
@@ -78,7 +92,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6075117028CE12440027D13F /* AWSAPIPlugin in Frameworks */,
+				6075117628CE12440027D13F /* Amplify in Frameworks */,
 				60AB0EFA28CDB4530095D921 /* Lottie in Frameworks */,
+				6075117228CE12440027D13F /* AWSCognitoAuthPlugin in Frameworks */,
+				6075117428CE12440027D13F /* AWSDataStorePlugin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,10 +120,13 @@
 		601FC1F128CAF416008E02BD = {
 			isa = PBXGroup;
 			children = (
+				6075116728CE11DD0027D13F /* amplifyconfiguration.json */,
+				6075116828CE11DD0027D13F /* awsconfiguration.json */,
 				601FC1FC28CAF416008E02BD /* Mine-Renew */,
 				601FC21328CAF417008E02BD /* Mine-RenewTests */,
 				601FC21D28CAF417008E02BD /* Mine-RenewUITests */,
 				601FC1FB28CAF416008E02BD /* Products */,
+				CBA76A74D0666B3753C63C50 /* AmplifyConfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,6 +199,7 @@
 		601FC22F28CAF451008E02BD /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				6075116B28CE11FB0027D13F /* Backend */,
 				601FC23528CAF496008E02BD /* API */,
 				601FC23428CAF48A008E02BD /* Repository */,
 				601FC23328CAF484008E02BD /* Models */,
@@ -230,6 +252,14 @@
 			children = (
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		6075116B28CE11FB0027D13F /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				6075116C28CE12070027D13F /* Backend.swift */,
+			);
+			path = Backend;
 			sourceTree = "<group>";
 		};
 		60EFE42928CC4807001A272C /* Map */ = {
@@ -305,6 +335,15 @@
 			path = Modal;
 			sourceTree = "<group>";
 		};
+		CBA76A74D0666B3753C63C50 /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				4B8F05DE7EA343B729271A7B /* awsconfiguration.json */,
+				1026808555BFD362CEFC32FD /* amplifyconfiguration.json */,
+			);
+			name = AmplifyConfig;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -323,6 +362,10 @@
 			name = "Mine-Renew";
 			packageProductDependencies = (
 				60AB0EF928CDB4530095D921 /* Lottie */,
+				6075116F28CE12440027D13F /* AWSAPIPlugin */,
+				6075117128CE12440027D13F /* AWSCognitoAuthPlugin */,
+				6075117328CE12440027D13F /* AWSDataStorePlugin */,
+				6075117528CE12440027D13F /* Amplify */,
 			);
 			productName = "Mine-Renew";
 			productReference = 601FC1FA28CAF416008E02BD /* Mine-Renew.app */;
@@ -398,6 +441,7 @@
 			mainGroup = 601FC1F128CAF416008E02BD;
 			packageReferences = (
 				60AB0EF828CDB4530095D921 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				6075116E28CE12440027D13F /* XCRemoteSwiftPackageReference "amplify-ios" */,
 			);
 			productRefGroup = 601FC1FB28CAF416008E02BD /* Products */;
 			projectDirPath = "";
@@ -415,12 +459,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6075116A28CE11DD0027D13F /* awsconfiguration.json in Resources */,
 				60EFE44128CCE9B9001A272C /* WalkingCompleteModalView.xib in Resources */,
 				60EFE42B28CC4811001A272C /* MapViewController.storyboard in Resources */,
 				60AB0EF628CDAC960095D921 /* AppleLoginViewController.storyboard in Resources */,
 				601FC20A28CAF417008E02BD /* LaunchScreen.storyboard in Resources */,
 				601FC20728CAF417008E02BD /* Assets.xcassets in Resources */,
 				601FC20528CAF416008E02BD /* Main.storyboard in Resources */,
+				28D865DE4363F0C3EDB663D6 /* awsconfiguration.json in Resources */,
+				6075116928CE11DD0027D13F /* amplifyconfiguration.json in Resources */,
+				0AEC643917270A217F2C54DF /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +497,7 @@
 				60AB0EF428CDAC480095D921 /* AppleLoginViewController.swift in Sources */,
 				60EFE43F28CCE995001A272C /* WalkingCompleteModalView.swift in Sources */,
 				601FC20228CAF416008E02BD /* MainViewController.swift in Sources */,
+				6075116D28CE12070027D13F /* Backend.swift in Sources */,
 				60EFE43328CC6D7A001A272C /* AppColor.swift in Sources */,
 				601FC1FE28CAF416008E02BD /* AppDelegate.swift in Sources */,
 				60EFE43128CC4F28001A272C /* MKMapView+Ext.swift in Sources */,
@@ -810,6 +859,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6075116E28CE12440027D13F /* XCRemoteSwiftPackageReference "amplify-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/amplify-ios";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		60AB0EF828CDB4530095D921 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -821,6 +878,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6075116F28CE12440027D13F /* AWSAPIPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6075116E28CE12440027D13F /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = AWSAPIPlugin;
+		};
+		6075117128CE12440027D13F /* AWSCognitoAuthPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6075116E28CE12440027D13F /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = AWSCognitoAuthPlugin;
+		};
+		6075117328CE12440027D13F /* AWSDataStorePlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6075116E28CE12440027D13F /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = AWSDataStorePlugin;
+		};
+		6075117528CE12440027D13F /* Amplify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6075116E28CE12440027D13F /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = Amplify;
+		};
 		60AB0EF928CDB4530095D921 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 60AB0EF828CDB4530095D921 /* XCRemoteSwiftPackageReference "lottie-ios" */;

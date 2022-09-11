@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-minerenew-dev-215042-authRole",
+      "UnauthRoleArn": "arn:aws:iam::020947295088:role/amplify-minerenew-dev-215042-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::020947295088:role/amplify-minerenew-dev-215042-authRole",
+      "Region": "ap-northeast-2",
+      "DeploymentBucketName": "amplify-minerenew-dev-215042-deployment",
+      "UnauthRoleName": "amplify-minerenew-dev-215042-unauthRole",
+      "StackName": "amplify-minerenew-dev-215042",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:020947295088:stack/amplify-minerenew-dev-215042/58deabe0-31d0-11ed-b199-0aa75b16ee72",
+      "AmplifyAppId": "ddtqbjo7rilj3"
+    }
+  }
+}
