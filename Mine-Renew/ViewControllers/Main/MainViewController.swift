@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         requestAuthNoti()
+        mineLottie.loopMode = .loop
         mineLottie.play()
     }
     
