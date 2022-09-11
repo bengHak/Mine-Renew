@@ -80,6 +80,10 @@
                                     <constraint firstItem="fBI-Yx-qRf" firstAttribute="centerX" secondItem="zLl-6W-gEh" secondAttribute="centerX" id="zdn-zY-M0Y"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfn-Rc-2PQ" customClass="WalkingCompleteModalView" customModule="Mine_Renew" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -90,6 +94,7 @@
                             <constraint firstItem="JlA-9V-xXY" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="HVA-fq-bLd"/>
                             <constraint firstItem="UxR-e5-5cN" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="-30" id="HzE-Ee-KQg"/>
                             <constraint firstAttribute="trailing" secondItem="JlA-9V-xXY" secondAttribute="trailing" id="JvE-YI-bct"/>
+                            <constraint firstItem="gfn-Rc-2PQ" firstAttribute="bottom" secondItem="JlA-9V-xXY" secondAttribute="bottom" id="Kot-jx-MMI"/>
                             <constraint firstItem="zLl-6W-gEh" firstAttribute="leading" secondItem="JlA-9V-xXY" secondAttribute="leading" id="RvI-aK-yyJ"/>
                             <constraint firstItem="mhB-9h-vYS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Tve-1D-0iI"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="yxf-E5-Rmu" secondAttribute="trailing" constant="20" id="Uaj-iz-hbp"/>
@@ -97,12 +102,16 @@
                             <constraint firstItem="zLl-6W-gEh" firstAttribute="bottom" secondItem="JlA-9V-xXY" secondAttribute="bottom" id="VZI-1A-EWd"/>
                             <constraint firstAttribute="bottom" secondItem="JlA-9V-xXY" secondAttribute="bottom" id="W7E-Vb-z5C"/>
                             <constraint firstItem="yxf-E5-Rmu" firstAttribute="top" secondItem="mhB-9h-vYS" secondAttribute="top" id="Y3f-c0-bCz"/>
+                            <constraint firstItem="gfn-Rc-2PQ" firstAttribute="leading" secondItem="JlA-9V-xXY" secondAttribute="leading" id="a0P-JG-a4K"/>
                             <constraint firstItem="yxf-E5-Rmu" firstAttribute="leading" secondItem="gXB-pT-olp" secondAttribute="trailing" constant="-32" id="bWd-mT-W08"/>
                             <constraint firstItem="gXB-pT-olp" firstAttribute="centerY" secondItem="yxf-E5-Rmu" secondAttribute="centerY" id="od9-q4-Tdn"/>
                             <constraint firstItem="zLl-6W-gEh" firstAttribute="top" secondItem="JlA-9V-xXY" secondAttribute="top" id="qzD-TX-Gbu"/>
+                            <constraint firstItem="gfn-Rc-2PQ" firstAttribute="top" secondItem="JlA-9V-xXY" secondAttribute="top" id="v96-TA-Xh5"/>
+                            <constraint firstItem="gfn-Rc-2PQ" firstAttribute="trailing" secondItem="JlA-9V-xXY" secondAttribute="trailing" id="vvf-x0-pHJ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="completeModal" destination="gfn-Rc-2PQ" id="ZHL-yb-lv4"/>
                         <outlet property="countDownLabel" destination="fBI-Yx-qRf" id="m9N-tZ-7Mf"/>
                         <outlet property="mapView" destination="JlA-9V-xXY" id="IYo-jJ-Eae"/>
                         <outlet property="walkingSpeedLabel" destination="UxR-e5-5cN" id="AWp-Bz-SLj"/>

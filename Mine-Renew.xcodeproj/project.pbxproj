@@ -22,6 +22,8 @@
 		60EFE43328CC6D7A001A272C /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFE43228CC6D7A001A272C /* AppColor.swift */; };
 		60EFE43528CC6DB9001A272C /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFE43428CC6DB9001A272C /* UIColor+Ext.swift */; };
 		60EFE43C28CC7C12001A272C /* WalkingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFE43B28CC7C12001A272C /* WalkingHistory.swift */; };
+		60EFE43F28CCE995001A272C /* WalkingCompleteModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFE43E28CCE995001A272C /* WalkingCompleteModalView.swift */; };
+		60EFE44128CCE9B9001A272C /* WalkingCompleteModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EFE44028CCE9B9001A272C /* WalkingCompleteModalView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		60EFE43228CC6D7A001A272C /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		60EFE43428CC6DB9001A272C /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		60EFE43B28CC7C12001A272C /* WalkingHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingHistory.swift; sourceTree = "<group>"; };
+		60EFE43E28CCE995001A272C /* WalkingCompleteModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingCompleteModalView.swift; sourceTree = "<group>"; };
+		60EFE44028CCE9B9001A272C /* WalkingCompleteModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkingCompleteModalView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,7 @@
 		601FC23028CAF467008E02BD /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				60EFE43D28CCE97D001A272C /* Modal */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -279,6 +284,15 @@
 			children = (
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		60EFE43D28CCE97D001A272C /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				60EFE43E28CCE995001A272C /* WalkingCompleteModalView.swift */,
+				60EFE44028CCE9B9001A272C /* WalkingCompleteModalView.xib */,
+			);
+			path = Modal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +399,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60EFE44128CCE9B9001A272C /* WalkingCompleteModalView.xib in Resources */,
 				60EFE42B28CC4811001A272C /* MapViewController.storyboard in Resources */,
 				601FC20A28CAF417008E02BD /* LaunchScreen.storyboard in Resources */,
 				601FC20728CAF417008E02BD /* Assets.xcassets in Resources */,
@@ -414,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60EFE43528CC6DB9001A272C /* UIColor+Ext.swift in Sources */,
+				60EFE43F28CCE995001A272C /* WalkingCompleteModalView.swift in Sources */,
 				601FC20228CAF416008E02BD /* MainViewController.swift in Sources */,
 				60EFE43328CC6D7A001A272C /* AppColor.swift in Sources */,
 				601FC1FE28CAF416008E02BD /* AppDelegate.swift in Sources */,

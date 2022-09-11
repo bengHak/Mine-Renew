@@ -15,8 +15,11 @@ final class MapViewController: UIViewController {
     @IBOutlet weak var walkingTimeLabel: UILabel!
     @IBOutlet weak var walkingSpeedLabel: UILabel!
     
+    @IBOutlet weak var completeModal: WalkingCompleteModalView!
+
     @IBOutlet weak var whiteOverlayView: UIView!
     @IBOutlet weak var countDownLabel: UILabel!
+
     // MARK: - Properties
     private let locationManager = CLLocationManager()
     private var startingCoordinate: CLLocationCoordinate2D?
@@ -25,6 +28,7 @@ final class MapViewController: UIViewController {
     private var initialCountDownTimer: Timer?
     private var returnToCurrentLocationTimer: Timer?
     private var walkingTimer: Timer?
+    private var captureTimer: Timer?
     private var elapsedSeconds: Int = 0
     private var isStarted: Bool = false
     private var isFinished: Bool = false
@@ -38,6 +42,7 @@ final class MapViewController: UIViewController {
         setTimeLabel()
         setLocationManager()
         setMapView()
+        completeModal.delegate = self
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,6 +89,7 @@ final class MapViewController: UIViewController {
     }
 
     func startWalking() {
+        self.isStarted = true
         self.startTime = Date()
         self.walkingTimer = Timer.scheduledTimer(
             timeInterval: 1,
@@ -178,7 +184,7 @@ final class MapViewController: UIViewController {
         guard !isFinished,
               let startingCoordinate = startingCoordinate,
               let startTime = startTime,
-              startTime.timeIntervalSinceNow < -180 else {
+              startTime.timeIntervalSinceNow < -60 else {
             return
         }
         
@@ -188,6 +194,7 @@ final class MapViewController: UIViewController {
         
         // 시작 지점에서 3미터 미만으로 가까워졌을 때
         if distacne > 3 { return }
+        setTrackingDisabled()
         
         let polygon = MKPolygon(
             coordinates: self.boundary,
@@ -195,8 +202,15 @@ final class MapViewController: UIViewController {
         )
         mapView.addOverlay(polygon)
         moveCameraToCenterOfPolygon(with: polygon)
+        let timer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(checkIsActive),
+            userInfo: nil,
+            repeats: true
+        )
+        captureTimer = timer
         requestSendFinishNoti()
-        setTrackingDisabled()
     }
 
     func setTrackingDisabled() {
@@ -211,7 +225,11 @@ final class MapViewController: UIViewController {
     func moveCameraToCenterOfPolygon(with polygon: MKPolygon) {
         mapView.setCameraZoomRange(.init(minCenterCoordinateDistance: 0), animated: true)
         mapView.visibleMapRect = polygon.boundingMapRect
-        mapView.region.span.latitudeDelta = mapView.region.span.latitudeDelta * 1.2
+        if polygon.boundingMapRect.width < polygon.boundingMapRect.height {
+            mapView.region.span.longitudeDelta = mapView.region.span.longitudeDelta * 2
+        } else {
+            mapView.region.span.latitudeDelta = mapView.region.span.latitudeDelta * 1.2
+        }
         feedbackGenerator.notificationOccurred(.success)
     }
 
@@ -267,6 +285,24 @@ final class MapViewController: UIViewController {
         
         userNotiCenter.add(request) { (error) in
             print(#function, error?.localizedDescription ?? "")
+        }
+    }
+
+    func takeCapture() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(mapView.bounds.size, false, 0)
+        mapView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image ?? UIImage()
+    }
+
+    @objc
+    func checkIsActive() {
+        if UIApplication.shared.applicationState == .active {
+            captureTimer?.invalidate()
+            captureTimer = nil
+            completeModal.imageView.image = takeCapture()
+            completeModal.isHidden = false
         }
     }
 }
@@ -338,5 +374,17 @@ extension MapViewController: CLLocationManagerDelegate {
             self.startingCoordinate = location.coordinate
             self.boundary.append(location.coordinate)
         }
+    }
+}
+
+// MARK: - WalkingCompleteModalViewDelegate
+extension MapViewController: WalkingCompleteModalViewDelegate {
+    func didTapCancle() {
+//        self.navigationController?.popViewController(animated: true)
+        completeModal.isHidden = true
+    }
+
+    func didTapSave() {
+        print("save")
     }
 }
