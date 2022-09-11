@@ -6,17 +6,30 @@
 //
 
 import UIKit
+import Lottie
 
 class MainViewController: UIViewController {
 
+    private let mineLottie = AnimationView(name: "Mine")
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setupMine()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         requestAuthNoti()
+        mineLottie.play()
+    }
+    
+    func setupMine() {
+        view.addSubview(mineLottie)
+        mineLottie.translatesAutoresizingMaskIntoConstraints = false
+        mineLottie.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        mineLottie.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        mineLottie.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        mineLottie.widthAnchor.constraint(equalToConstant: 150).isActive = true
     }
 
     func requestAuthNoti() {
