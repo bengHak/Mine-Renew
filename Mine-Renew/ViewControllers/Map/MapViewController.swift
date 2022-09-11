@@ -377,11 +377,12 @@ extension MapViewController: CLLocationManagerDelegate {
 // MARK: - WalkingCompleteModalViewDelegate
 extension MapViewController: WalkingCompleteModalViewDelegate {
     func didTapCancle() {
-//        self.navigationController?.popViewController(animated: true)
         completeModal.isHidden = true
     }
 
     func didTapSave() {
-        print("save")
+        let storyBoard : UIStoryboard = UIStoryboard(name: "AppleLoginViewController", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AppleLoginViewController") as! AppleLoginViewController
+        self.navigationController?.pushViewController(nextViewController, animated: true)
     }
 }

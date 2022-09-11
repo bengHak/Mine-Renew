@@ -13,6 +13,13 @@ final class AppleLoginViewController: UIViewController {
     // MARK: - Properties
     
     // MARK: - Lifecycles
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+    }
     
     // MARK: - Helpers
+    @IBAction func didTapBackButton(_ sender: Any) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 }
