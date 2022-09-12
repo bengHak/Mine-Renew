@@ -40,6 +40,6 @@ amplifytools.xcconfig
 **.sample
 #amplify-do-not-edit-end
 
-amplity/
 amplifyconfiguration.json
 awsconfiguration.json
+amplify/
