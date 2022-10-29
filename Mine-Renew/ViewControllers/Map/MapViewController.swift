@@ -282,7 +282,7 @@ final class MapViewController: UIViewController {
         let distacne: CLLocationDistance = MKMapPoint(point1).distance(to: MKMapPoint(point2))
         
         // 시작 지점에서 3미터 미만으로 가까워졌을 때
-        if distacne > 3 { return }
+        if distacne > 10 { return }
         setTrackingDisabled()
         
         let polygon = MKPolygon(
@@ -360,10 +360,10 @@ extension MapViewController: CLLocationManagerDelegate {
         print(location.speed)
         if location.speed < 0 || !isStarted { return }
         walkingSpeedLabel.text = "\(String(format: "%.2f", location.speed))m/s"
-        if location.speed > 3 {
-            print("너무 빠름")
-            showAlert()
-        }
+//        if location.speed > 3 {
+//            print("너무 빠름")
+//            showAlert()
+//        }
 
         addPolyline(with: location)
         checkPolygonIsMade(with: location)
