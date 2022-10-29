@@ -19,6 +19,11 @@ xcuserdata/
 
 # End of https://www.toptal.com/developers/gitignore/api/xcode
 
+
+amplifyconfiguration.json
+awsconfiguration.json
+amplify/
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -39,7 +44,3 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
-
-amplifyconfiguration.json
-awsconfiguration.json
-amplify/
