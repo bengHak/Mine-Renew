@@ -36,8 +36,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_cloud_bg" translatesAutoresizingMaskIntoConstraints="NO" id="XMl-Gn-b6W">
                                 <rect key="frame" x="-10" y="251.5" width="434" height="153"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUt-Ai-TUP">
-                                <rect key="frame" x="142" y="296.5" width="130" height="43"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUt-Ai-TUP">
+                                <rect key="frame" x="150" y="296.5" width="114" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -48,12 +48,6 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용할 닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2t3-q5-u0F">
-                                <rect key="frame" x="142" y="434.5" width="130" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dU1-oC-Jtx">
                                 <rect key="frame" x="20" y="782" width="374" height="60"/>
                                 <constraints>
@@ -61,8 +55,7 @@
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="  Apple로 회원가입" cornerStyle="medium">
-                                    <imageReference key="image" image="applelogo" catalog="system" symbolScale="large"/>
+                                <buttonConfiguration key="configuration" style="gray" image="applelogo" catalog="system" title="  Apple로 로그인" cornerStyle="medium">
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="19"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,57 +64,32 @@
                                     <action selector="didTapAppleLogin:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="SHg-nX-Ut9"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="닉네임을 입력해주세요" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8wM-ZS-vCa">
-                                <rect key="frame" x="107" y="473.5" width="200" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="4HT-Pu-Nc1"/>
-                                    <constraint firstAttribute="height" constant="32" id="oHl-5k-xZd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⛔️ 올바르지 않은 닉네임입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTN-ac-cgg">
-                                <rect key="frame" x="110.5" y="515.5" width="193" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" systemColor="systemRedColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="8wM-ZS-vCa" firstAttribute="centerX" secondItem="gOy-KO-0R4" secondAttribute="centerX" id="1OJ-3r-1jE"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="dU1-oC-Jtx" secondAttribute="bottom" constant="20" id="4Fw-8O-f9b"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="XMl-Gn-b6W" secondAttribute="trailing" constant="-10" id="8ug-TE-PO5"/>
                             <constraint firstAttribute="bottom" secondItem="gOy-KO-0R4" secondAttribute="bottom" id="9X2-oq-0oi"/>
                             <constraint firstItem="uUt-Ai-TUP" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="IXA-BY-G22"/>
                             <constraint firstItem="dU1-oC-Jtx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="K3w-CF-eOV"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dU1-oC-Jtx" secondAttribute="trailing" constant="20" id="Poh-YC-vUj"/>
-                            <constraint firstItem="2t3-q5-u0F" firstAttribute="top" secondItem="XMl-Gn-b6W" secondAttribute="bottom" constant="30" id="Pth-Nh-5Ka"/>
-                            <constraint firstItem="2t3-q5-u0F" firstAttribute="centerX" secondItem="gOy-KO-0R4" secondAttribute="centerX" id="QWd-Ia-t3S"/>
                             <constraint firstItem="FAU-W3-QWd" firstAttribute="top" secondItem="uUt-Ai-TUP" secondAttribute="bottom" constant="6" id="TRv-hW-bcQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="leading" secondItem="XMl-Gn-b6W" secondAttribute="leading" constant="10" id="Tbp-bZ-8Q7"/>
-                            <constraint firstItem="JTN-ac-cgg" firstAttribute="top" secondItem="8wM-ZS-vCa" secondAttribute="bottom" constant="10" id="Ttp-kl-lkr"/>
-                            <constraint firstItem="8wM-ZS-vCa" firstAttribute="top" secondItem="2t3-q5-u0F" secondAttribute="bottom" constant="10" id="Yms-FX-Gn9"/>
                             <constraint firstItem="FAU-W3-QWd" firstAttribute="centerX" secondItem="uUt-Ai-TUP" secondAttribute="centerX" id="aKv-dA-Ypb"/>
                             <constraint firstItem="rd5-a2-LDy" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="coZ-Xt-ZL5"/>
                             <constraint firstItem="XMl-Gn-b6W" firstAttribute="top" secondItem="uUt-Ai-TUP" secondAttribute="top" constant="-45" id="iPV-EE-5nb"/>
                             <constraint firstItem="XMl-Gn-b6W" firstAttribute="centerY" secondItem="gOy-KO-0R4" secondAttribute="centerY" constant="-120" id="kU9-ih-3EP"/>
                             <constraint firstItem="gOy-KO-0R4" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="kZ3-6v-fYz"/>
-                            <constraint firstItem="JTN-ac-cgg" firstAttribute="centerX" secondItem="gOy-KO-0R4" secondAttribute="centerX" id="uq6-zF-AKG"/>
                             <constraint firstAttribute="trailing" secondItem="gOy-KO-0R4" secondAttribute="trailing" id="vvP-BP-L1D"/>
                             <constraint firstItem="gOy-KO-0R4" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="x5S-TF-8bg"/>
                             <constraint firstItem="rd5-a2-LDy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="xsB-Zi-AEv"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="nicknameTextField" destination="8wM-ZS-vCa" id="Vgn-lw-Lrg"/>
-                        <outlet property="nicknameWarningLabel" destination="JTN-ac-cgg" id="JyS-fV-wTd"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="134.78260869565219" y="89.732142857142847"/>
+            <point key="canvasLocation" x="297" y="88"/>
         </scene>
     </scenes>
     <resources>
@@ -131,9 +99,6 @@
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

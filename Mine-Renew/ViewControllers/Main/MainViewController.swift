@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 import Lottie
 import Amplify
 import AWSPluginsCore
@@ -14,8 +15,12 @@ final class MainViewController: UIViewController {
     
     // MARK: - UI properties
     private let mineLottie = AnimationView(name: "Mine")
-    
+    @IBOutlet weak var historyButton: UIButton!
+
     // MARK: - Properties
+    private var unsubscribeToken: UnsubscribeToken?
+    @Published private var isSignedIn: Bool? = nil
+    private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
@@ -28,17 +33,29 @@ final class MainViewController: UIViewController {
         requestAuthNoti()
         mineLottie.loopMode = .loop
         mineLottie.play()
+        listenAuthEvent()
+        checkIsAuthenticated()
+        bind()
     }
-
+    
     // MARK: - IBAction
-    @IBAction func deleteUser(_ sender: Any) {
-        Amplify.Auth.deleteUser()
-    }
-
     @IBAction func didTapRank(_ sender: Any) {
-        Backend.shared.signOutGlobally()
+        pushViewControllerWithStoryBoard(.rank)
     }
-
+    
+    @IBAction func didTapHistory(_ sender: Any) {
+        pushViewControllerWithStoryBoard(.history)
+    }
+    
+    @IBAction func didTapInfoButton(_ sender: Any) {
+        guard let isSignedIn else { return }
+        if isSignedIn {
+            pushViewControllerWithStoryBoard(.profile)
+        } else {
+            pushViewControllerWithStoryBoard(.login)
+        }
+    }
+    
     @IBAction func didTapSignOut(_ sender: Any) {
         Amplify.Auth.signOut() { result in
             switch result {
@@ -49,7 +66,7 @@ final class MainViewController: UIViewController {
             }
         }
     }
-
+    
     // MARK: - Helpers
     func setupMine() {
         view.addSubview(mineLottie)
@@ -61,7 +78,7 @@ final class MainViewController: UIViewController {
             mineLottie.widthAnchor.constraint(equalToConstant: 150)
         ])
     }
-
+    
     func requestAuthNoti() {
         UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
             switch settings.authorizationStatus {
@@ -100,4 +117,35 @@ final class MainViewController: UIViewController {
         }
     }
     
+    private func listenAuthEvent() {
+        unsubscribeToken = Amplify.Hub.listen(to: .auth) { [weak self] payload in
+            switch payload.eventName {
+            case HubPayload.EventName.Auth.signedIn:
+                print("User signed in")
+            case HubPayload.EventName.Auth.sessionExpired:
+                print("Session expired")
+            case HubPayload.EventName.Auth.signedOut:
+                print("User signed out")
+            case HubPayload.EventName.Auth.userDeleted:
+                print("User deleted")
+            default:
+                break
+            }
+        }
+    }
+    
+    private func checkIsAuthenticated() {
+        Backend.shared.accessCredential() { [weak self] isSignedIn in
+            self?.isSignedIn = isSignedIn
+        }
+    }
+    
+    private func bind() {
+        $isSignedIn.sink { [weak self] result in
+            guard let result else { return }
+            DispatchQueue.main.async {
+                self?.historyButton.isHidden = !result
+            }
+        }.store(in: &subscriptions)
+    }
 }

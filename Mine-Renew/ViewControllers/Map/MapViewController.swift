@@ -381,8 +381,6 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
     }
 
     func didTapSave() {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "AppleLoginViewController", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AppleLoginViewController") as! AppleLoginViewController
-        self.navigationController?.pushViewController(nextViewController, animated: true)
+        pushViewControllerWithStoryBoard(.login)
     }
 }

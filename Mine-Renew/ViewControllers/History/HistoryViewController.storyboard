@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--History View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="HistoryViewController" customModule="Mine_Renew" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_bg" translatesAutoresizingMaskIntoConstraints="NO" id="YGL-3d-vB7">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afv-5Y-DgK">
+                                <rect key="frame" x="158.66666666666666" y="67" width="73" height="27"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEQ-kp-67c">
+                                <rect key="frame" x="20" y="67" width="41" height="35"/>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="chevron.left" catalog="system" symbolScale="large" variableValue="1"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="bold"/>
+                                    <color key="baseForegroundColor" systemColor="systemGrayColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="q6L-eS-WiQ"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_cloud_bg" translatesAutoresizingMaskIntoConstraints="NO" id="eMz-e5-I0c">
+                                <rect key="frame" x="0.0" y="127" width="390" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="o0S-No-dcF"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eMz-e5-I0c" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="80" id="6n2-cC-eTN"/>
+                            <constraint firstItem="eMz-e5-I0c" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="7eZ-6D-HFO"/>
+                            <constraint firstItem="eMz-e5-I0c" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="GXy-Ui-qZZ"/>
+                            <constraint firstItem="Afv-5Y-DgK" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="RVq-Ta-Hhv"/>
+                            <constraint firstItem="Afv-5Y-DgK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="Rd8-Mt-N7z"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="leading" secondItem="mEQ-kp-67c" secondAttribute="leading" constant="-20" id="UvE-2Y-Rnb"/>
+                            <constraint firstAttribute="bottom" secondItem="YGL-3d-vB7" secondAttribute="bottom" id="ZBX-UA-noe"/>
+                            <constraint firstItem="mEQ-kp-67c" firstAttribute="top" secondItem="Afv-5Y-DgK" secondAttribute="top" id="ibZ-4m-r3S"/>
+                            <constraint firstItem="YGL-3d-vB7" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="kLF-ki-GZa"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="YGL-3d-vB7" secondAttribute="trailing" id="rxa-OA-ZAt"/>
+                            <constraint firstItem="YGL-3d-vB7" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="xx7-cH-1AG"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="91" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="auth_bg" width="390" height="844"/>
+        <image name="auth_cloud_bg" width="390" height="153"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

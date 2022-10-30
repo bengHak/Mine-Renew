@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Nick Name View Controller-->
+        <scene sceneID="PL9-ir-Hvn">
+            <objects>
+                <viewController storyboardIdentifier="AppleLoginViewController" id="33m-SB-UFu" customClass="NickNameViewController" customModule="Mine_Renew" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UGc-ET-zde">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_bg" translatesAutoresizingMaskIntoConstraints="NO" id="a88-QJ-VU5">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDU-hN-in8">
+                                <rect key="frame" x="16" y="57" width="48" height="43"/>
+                                <color key="tintColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="chevron.left" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24" scale="large" weight="bold"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapBackButton:" destination="33m-SB-UFu" eventType="touchUpInside" id="soe-w3-2tD"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_cloud_bg" translatesAutoresizingMaskIntoConstraints="NO" id="CEN-ZQ-Q4S">
+                                <rect key="frame" x="-10" y="225.66666666666663" width="410" height="153"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30v-H2-O5t">
+                                <rect key="frame" x="111" y="270.66666666666669" width="168" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용할 닉네임을 입력해주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOD-9l-gxB">
+                                <rect key="frame" x="77.666666666666686" y="319.66666666666669" width="235" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXH-VG-L3U">
+                                <rect key="frame" x="20" y="730" width="350" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="XcY-jc-sW0"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="닉네임 등록" cornerStyle="medium">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="19"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapRegisterNickname:" destination="33m-SB-UFu" eventType="touchUpInside" id="Xgh-I9-AQA"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="닉네임을 입력해주세요" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="34B-jc-min">
+                                <rect key="frame" x="95" y="363.66666666666669" width="200" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="BF8-fs-ZKm"/>
+                                    <constraint firstAttribute="height" constant="32" id="CU7-bU-e2e"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⛔️ 올바르지 않은 닉네임입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxP-fT-q0x">
+                                <rect key="frame" x="98.666666666666686" y="405.66666666666669" width="193" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eIA-Ha-Sob"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eIA-Ha-Sob" firstAttribute="trailing" secondItem="fXH-VG-L3U" secondAttribute="trailing" constant="20" id="4GI-lw-uYN"/>
+                            <constraint firstItem="fXH-VG-L3U" firstAttribute="leading" secondItem="eIA-Ha-Sob" secondAttribute="leading" constant="20" id="5Rh-9V-VsR"/>
+                            <constraint firstItem="kxP-fT-q0x" firstAttribute="centerX" secondItem="a88-QJ-VU5" secondAttribute="centerX" id="Cnb-BB-z7b"/>
+                            <constraint firstItem="34B-jc-min" firstAttribute="centerX" secondItem="a88-QJ-VU5" secondAttribute="centerX" id="G9W-kz-oLH"/>
+                            <constraint firstItem="aDU-hN-in8" firstAttribute="leading" secondItem="eIA-Ha-Sob" secondAttribute="leading" constant="16" id="JWq-as-nPD"/>
+                            <constraint firstAttribute="trailing" secondItem="a88-QJ-VU5" secondAttribute="trailing" id="Jp2-vp-JfF"/>
+                            <constraint firstAttribute="bottom" secondItem="a88-QJ-VU5" secondAttribute="bottom" id="Jq9-Kl-jjI"/>
+                            <constraint firstItem="CEN-ZQ-Q4S" firstAttribute="centerY" secondItem="a88-QJ-VU5" secondAttribute="centerY" constant="-120" id="KEW-R1-0gw"/>
+                            <constraint firstItem="eIA-Ha-Sob" firstAttribute="bottom" secondItem="fXH-VG-L3U" secondAttribute="bottom" constant="20" id="Ky1-ES-xIz"/>
+                            <constraint firstItem="kxP-fT-q0x" firstAttribute="top" secondItem="34B-jc-min" secondAttribute="bottom" constant="10" id="Pmt-Pq-csP"/>
+                            <constraint firstItem="34B-jc-min" firstAttribute="top" secondItem="DOD-9l-gxB" secondAttribute="bottom" constant="20" id="RqD-kw-4jS"/>
+                            <constraint firstItem="30v-H2-O5t" firstAttribute="centerX" secondItem="eIA-Ha-Sob" secondAttribute="centerX" id="XWS-rk-Oee"/>
+                            <constraint firstItem="DOD-9l-gxB" firstAttribute="top" secondItem="30v-H2-O5t" secondAttribute="bottom" constant="6" id="ZFm-wT-Oym"/>
+                            <constraint firstItem="eIA-Ha-Sob" firstAttribute="leading" secondItem="CEN-ZQ-Q4S" secondAttribute="leading" constant="10" id="cE8-3G-mBw"/>
+                            <constraint firstItem="DOD-9l-gxB" firstAttribute="centerX" secondItem="30v-H2-O5t" secondAttribute="centerX" id="dNH-gq-SNz"/>
+                            <constraint firstItem="a88-QJ-VU5" firstAttribute="top" secondItem="UGc-ET-zde" secondAttribute="top" id="e0g-PJ-hhy"/>
+                            <constraint firstItem="a88-QJ-VU5" firstAttribute="leading" secondItem="UGc-ET-zde" secondAttribute="leading" id="iGK-zk-3Ur"/>
+                            <constraint firstItem="eIA-Ha-Sob" firstAttribute="trailing" secondItem="CEN-ZQ-Q4S" secondAttribute="trailing" constant="-10" id="nWD-5T-LMD"/>
+                            <constraint firstItem="CEN-ZQ-Q4S" firstAttribute="top" secondItem="30v-H2-O5t" secondAttribute="top" constant="-45" id="wi7-as-eLH"/>
+                            <constraint firstItem="aDU-hN-in8" firstAttribute="top" secondItem="eIA-Ha-Sob" secondAttribute="top" constant="10" id="wwD-O1-cbI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nicknameTextField" destination="34B-jc-min" id="v3L-Bq-Bh9"/>
+                        <outlet property="nicknameWarningLabel" destination="kxP-fT-q0x" id="0fO-pd-dd3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GNn-xb-AP7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="198" y="-92"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="auth_bg" width="390" height="844"/>
+        <image name="auth_cloud_bg" width="390" height="153"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

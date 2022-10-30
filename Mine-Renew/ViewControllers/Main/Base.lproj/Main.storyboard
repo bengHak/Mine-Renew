@@ -45,13 +45,45 @@
                                     <action selector="didTapRank:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sc8-k7-uVN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pm2-N3-NwX">
+                                <rect key="frame" x="20" y="58.666666666666657" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="UZV-Tt-pWx"/>
+                                    <constraint firstAttribute="height" constant="40" id="mPd-bW-ocB"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="info_button_icon">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapInfoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jeA-6b-Pru"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIe-wl-iRR">
+                                <rect key="frame" x="64" y="58.666666666666657" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="g2G-ph-Tyk"/>
+                                    <constraint firstAttribute="width" constant="40" id="xLy-wz-ems"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="history_button_icon">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapHistory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v1v-Nh-1MH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mjI-fd-PkV" secondAttribute="trailing" constant="20" id="1ZQ-nz-FHX"/>
+                            <constraint firstItem="pm2-N3-NwX" firstAttribute="centerY" secondItem="Xls-iF-ECR" secondAttribute="centerY" id="7Bn-8V-EqN"/>
+                            <constraint firstItem="pm2-N3-NwX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7Fx-3e-s68"/>
+                            <constraint firstItem="eIe-wl-iRR" firstAttribute="leading" secondItem="pm2-N3-NwX" secondAttribute="trailing" constant="4" id="O6k-4U-815"/>
                             <constraint firstItem="Xls-iF-ECR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="4" id="SWt-sF-lR0"/>
                             <constraint firstAttribute="trailing" secondItem="zsP-rH-7IO" secondAttribute="trailing" id="aGl-re-tvJ"/>
+                            <constraint firstItem="eIe-wl-iRR" firstAttribute="centerY" secondItem="pm2-N3-NwX" secondAttribute="centerY" id="aGt-pQ-cE0"/>
                             <constraint firstItem="mjI-fd-PkV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="bk0-bT-Y7S"/>
                             <constraint firstItem="zsP-rH-7IO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="feq-99-nP6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mjI-fd-PkV" secondAttribute="bottom" constant="20" id="pcX-DR-BOb"/>
@@ -62,6 +94,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mCC-dJ-kEN"/>
+                    <connections>
+                        <outlet property="historyButton" destination="eIe-wl-iRR" id="y7Z-KY-79I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -108,7 +143,9 @@
     </scenes>
     <resources>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
+        <image name="history_button_icon" width="41" height="41"/>
         <image name="home_bg" width="390" height="844"/>
+        <image name="info_button_icon" width="82" height="82"/>
         <image name="rank_button" width="96" height="41"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

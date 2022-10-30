@@ -12,8 +12,6 @@ import Combine
 
 final class AppleLoginViewController: UIViewController {
     // MARK: - UI properties
-    @IBOutlet weak var nicknameTextField: UITextField!
-    @IBOutlet weak var nicknameWarningLabel: UILabel!
     
     // MARK: - Properties
     private var unsubscribeToken: UnsubscribeToken?
@@ -30,7 +28,8 @@ final class AppleLoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Backend.shared.accessCredential() { [weak self] in
+        Backend.shared.accessCredential() { [weak self] isSignedIn in
+            guard isSignedIn else { return }
             DispatchQueue.main.async {
                 self?.navigationController?.popToRootViewController(animated: true)
             }
@@ -39,12 +38,6 @@ final class AppleLoginViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func didTapAppleLogin(_ sender: Any) {
-        guard let nickname = nicknameTextField.text,
-              !nickname.isEmpty else {
-            nicknameWarningLabel.isHidden = false
-            return
-        }
-
         Backend.shared.signIn(self.view.window!)
     }
 
@@ -53,37 +46,6 @@ final class AppleLoginViewController: UIViewController {
     }
     
     // MARK: - Helpers
-    func createProfile() {
-        guard let nickname = nicknameTextField.text,
-              !nickname.isEmpty else {
-            nicknameWarningLabel.isHidden = false
-            return
-        }
-
-        let profileUUID: String = UUID().uuidString
-        let lastUpdate = Temporal.DateTime(Date())
-        let user = MineUser(
-            profileUuid: profileUUID,
-            name: nickname,
-            totalArea: 0,
-            totalAreaLastUpdate: lastUpdate
-        )
-        
-        Backend.shared.addMineUser(user) { [weak self] result in
-            guard let result else { return }
-            let myProfile = MyProfile(uuid: profileUUID, userData: result, myProfileUserDataId: result.id)
-            Backend.shared.addMyProfile(myProfile) { [weak self] result in
-                DispatchQueue.main.async {
-                    if result {
-                        self?.navigationController?.popToRootViewController(animated: true)
-                    } else {
-                        self?.showSignUpFailedAlert()
-                    }
-                }
-            }
-        }
-    }
-    
     func listenAuthEvent() {
         unsubscribeToken = Amplify.Hub.listen(to: .auth) { [weak self] payload in
             switch payload.eventName {
@@ -101,20 +63,16 @@ final class AppleLoginViewController: UIViewController {
             }
         }
     }
-
-    func showSignUpFailedAlert() {
-        let alert = UIAlertController(title: "회원가입 실패", message: "회원가입에 실패했습니다. 다시 시도해주세요.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-        alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
-    }
     
     func bind() {
         $isSignedIn.sink { [weak self] success in
             guard let success else { return }
             if success {
                 DispatchQueue.main.async {
-                    self?.createProfile()
+#warning("로그인 이후에 MyProfile이 0개인지 확인")
+#warning("0개면 nicknameVC push 하기")
+#warning("1개면 main으로 가기")
+                    self?.navigationController?.popToRootViewController(animated: true)
                 }
             }
         }.store(in: &subscriptions)

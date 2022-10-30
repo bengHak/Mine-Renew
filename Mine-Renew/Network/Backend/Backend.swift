@@ -141,29 +141,24 @@ extension Backend {
         }
     }
     
-    func signOutGlobally() {
+    func signOutGlobally(_ completion: @escaping ()->()) {
         Amplify.Auth.signOut(options: .init(globalSignOut: true)) { result in
             switch result {
             case .success:
                 print("Successfully signed out")
+                completion()
             case .failure(let error):
                 print("Sign out failed with error \(error)")
             }
         }
     }
     
-    func deleteUser() async {
-        do {
-            try await Amplify.Auth.deleteUser()
-            print("Successfully deleted user")
-        } catch let error as AuthError {
-            print("Delete user failed with error \(error)")
-        } catch {
-            print("Unexpected error: \(error)")
-        }
+    func deleteUser(_ completion: @escaping ()->()) {
+        Amplify.Auth.deleteUser()
+        completion()
     }
     
-    func accessCredential(_ completion: @escaping ()->()) {
+    func accessCredential(_ completion: @escaping (Bool)->()) {
         Amplify.Auth.fetchAuthSession { result in
             do {
                 let session = try result.get()
@@ -186,9 +181,10 @@ extension Backend {
                     let tokens = try cognitoTokenProvider.getCognitoTokens().get()
                     print("Id token - \(tokens.idToken) ")
                 }
-                completion()
+                completion(true)
             } catch {
                 print("Fetch auth session failed with error - \(error)")
+                completion(false)
             }
         }
     }
