@@ -8,29 +8,44 @@
 import UIKit
 import Amplify
 import AWSPluginsCore
+import Combine
 
 final class AppleLoginViewController: UIViewController {
     // MARK: - UI properties
+    @IBOutlet weak var nicknameTextField: UITextField!
+    @IBOutlet weak var nicknameWarningLabel: UILabel!
     
     // MARK: - Properties
     private var unsubscribeToken: UnsubscribeToken?
-    private let backend = Backend.shared
+    @Published private var isSignedIn: Bool? = nil
+    private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         listenAuthEvent()
+        bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        backend.accessCredential()
+        Backend.shared.accessCredential() { [weak self] in
+            DispatchQueue.main.async {
+                self?.navigationController?.popToRootViewController(animated: true)
+            }
+        }
     }
     
     // MARK: - IBAction
     @IBAction func didTapAppleLogin(_ sender: Any) {
-        backend.signIn(self.view.window!)
+        guard let nickname = nicknameTextField.text,
+              !nickname.isEmpty else {
+            nicknameWarningLabel.isHidden = false
+            return
+        }
+
+        Backend.shared.signIn(self.view.window!)
     }
 
     @IBAction func didTapBackButton(_ sender: Any) {
@@ -38,60 +53,70 @@ final class AppleLoginViewController: UIViewController {
     }
     
     // MARK: - Helpers
+    func createProfile() {
+        guard let nickname = nicknameTextField.text,
+              !nickname.isEmpty else {
+            nicknameWarningLabel.isHidden = false
+            return
+        }
+
+        let profileUUID: String = UUID().uuidString
+        let lastUpdate = Temporal.DateTime(Date())
+        let user = MineUser(
+            profileUuid: profileUUID,
+            name: nickname,
+            totalArea: 0,
+            totalAreaLastUpdate: lastUpdate
+        )
+        
+        Backend.shared.addMineUser(user) { [weak self] result in
+            guard let result else { return }
+            let myProfile = MyProfile(uuid: profileUUID, userData: result, myProfileUserDataId: result.id)
+            Backend.shared.addMyProfile(myProfile) { [weak self] result in
+                DispatchQueue.main.async {
+                    if result {
+                        self?.navigationController?.popToRootViewController(animated: true)
+                    } else {
+                        self?.showSignUpFailedAlert()
+                    }
+                }
+            }
+        }
+    }
+    
     func listenAuthEvent() {
         unsubscribeToken = Amplify.Hub.listen(to: .auth) { [weak self] payload in
             switch payload.eventName {
             case HubPayload.EventName.Auth.signedIn:
                 print("User signed in")
-                DispatchQueue.main.async {
-                    self?.navigationController?.popToRootViewController(animated: true)
-                }
+                self?.isSignedIn = true
             case HubPayload.EventName.Auth.sessionExpired:
                 print("Session expired")
-                // Re-authenticate the user
-                
             case HubPayload.EventName.Auth.signedOut:
                 print("User signed out")
-                // Update UI
-                
             case HubPayload.EventName.Auth.userDeleted:
                 print("User deleted")
-                // Update UI
             default:
                 break
             }
         }
     }
+
+    func showSignUpFailedAlert() {
+        let alert = UIAlertController(title: "회원가입 실패", message: "회원가입에 실패했습니다. 다시 시도해주세요.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     
-//    func accessCredential() {
-//        Amplify.Auth.fetchAuthSession { [weak self] result in
-//            do {
-//                let session = try result.get()
-//                
-//                // Get user sub or identity id
-//                if let identityProvider = session as? AuthCognitoIdentityProvider {
-//                    let usersub = try identityProvider.getUserSub().get()
-//                    let identityId = try identityProvider.getIdentityId().get()
-//                    print("User sub - \(usersub) and identity id \(identityId)")
-//                }
-//                
-//                // Get AWS credentials
-//                if let awsCredentialsProvider = session as? AuthAWSCredentialsProvider {
-//                    let credentials = try awsCredentialsProvider.getAWSCredentials().get()
-//                    print("Access key - \(credentials.accessKey) ")
-//                }
-//                
-//                // Get cognito user pool token
-//                if let cognitoTokenProvider = session as? AuthCognitoTokensProvider {
-//                    let tokens = try cognitoTokenProvider.getCognitoTokens().get()
-//                    print("Id token - \(tokens.idToken) ")
-//                }
-//                DispatchQueue.main.async {
-//                    self?.navigationController?.popToRootViewController(animated: true)
-//                }
-//            } catch {
-//                print("Fetch auth session failed with error - \(error)")
-//            }
-//        }
-//    }
+    func bind() {
+        $isSignedIn.sink { [weak self] success in
+            guard let success else { return }
+            if success {
+                DispatchQueue.main.async {
+                    self?.createProfile()
+                }
+            }
+        }.store(in: &subscriptions)
+    }
 }

@@ -15,7 +15,7 @@ class Backend {
     static func initialize() -> Backend {
         return .shared
     }
-
+    
     private init() {
         // initialize amplify
         do {
@@ -34,7 +34,7 @@ class Backend {
             case .success(let result):
                 switch result {
                 case .success(let data):
-                    print("Successfully created User: \(data)")
+                    print("Successfully created polygon: \(data)")
                 case .failure(let error):
                     print("Got failed result with \(error.errorDescription)")
                 }
@@ -65,8 +65,8 @@ class Backend {
     
     func requestRanking() {
         Amplify.DataStore.query(
-            User.self,
-            sort: .by(.ascending(User.keys.totalArea)),
+            MineUser.self,
+            sort: .by(.ascending(MineUser.keys.totalArea)),
             paginate: .page(0, limit: 20)
         ) {
             switch $0 {
@@ -92,6 +92,44 @@ extension Backend {
         }
     }
     
+    func addMyProfile(_ profile: MyProfile, completion: @escaping (Bool)->()) {
+        Amplify.API.mutate(request: .create(profile)) { event in
+            switch event {
+            case .success(let result):
+                switch result {
+                case .success(let data):
+                    print("Successfully created Profile: \(data)")
+                    completion(true)
+                case .failure(let error):
+                    print("Got failed result with \(error.errorDescription)")
+                    completion(false)
+                }
+            case .failure(let error):
+                print("Got failed event with error \(error)")
+                completion(false)
+            }
+        }
+    }
+    
+    func addMineUser(_ user: MineUser, completion: @escaping (MineUser?)->()) {
+        Amplify.API.mutate(request: .create(user)) { event in
+            switch event {
+            case .success(let result):
+                switch result {
+                case .success(let data):
+                    print("Successfully created User: \(data)")
+                    completion(data)
+                case .failure(let error):
+                    print("Got failed result with \(error.errorDescription)")
+                    completion(nil)
+                }
+            case .failure(let error):
+                print("Got failed event with error \(error)")
+                completion(nil)
+            }
+        }
+    }
+
     func signIn(_ window: UIWindow) {
         Amplify.Auth.signInWithWebUI(for: .apple, presentationAnchor: window) { result in
             switch result {
@@ -125,8 +163,8 @@ extension Backend {
         }
     }
     
-    func accessCredential() {
-        Amplify.Auth.fetchAuthSession { [weak self] result in
+    func accessCredential(_ completion: @escaping ()->()) {
+        Amplify.Auth.fetchAuthSession { result in
             do {
                 let session = try result.get()
                 
@@ -148,10 +186,7 @@ extension Backend {
                     let tokens = try cognitoTokenProvider.getCognitoTokens().get()
                     print("Id token - \(tokens.idToken) ")
                 }
-                #warning("completion handler로 보내기")
-//                DispatchQueue.main.async {
-//                    self?.navigationController?.popToRootViewController(animated: true)
-//                }
+                completion()
             } catch {
                 print("Fetch auth session failed with error - \(error)")
             }

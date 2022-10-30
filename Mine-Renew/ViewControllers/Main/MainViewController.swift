@@ -36,7 +36,7 @@ final class MainViewController: UIViewController {
     }
 
     @IBAction func didTapRank(_ sender: Any) {
-        print("did tap rank")
+        Backend.shared.signOutGlobally()
     }
 
     @IBAction func didTapSignOut(_ sender: Any) {
