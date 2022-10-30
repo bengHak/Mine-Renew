@@ -11,6 +11,7 @@ import AWSPluginsCore
 
 final class ProfileViewController: UIViewController {
     // MARK: - UI properties
+    @IBOutlet weak var nicknameLabel: UILabel!
     
     // MARK: - Properties
     @IBAction func didTapBackButton(_ sender: Any) {
@@ -20,6 +21,7 @@ final class ProfileViewController: UIViewController {
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchProfile()
     }
     
     // MARK: - IBActions
@@ -49,6 +51,22 @@ final class ProfileViewController: UIViewController {
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    private func fetchProfile() {
+        Backend.shared.requestProfile() { [weak self] profile in
+            guard let profile else { return }
+            self?.fetchUserData(profile.uuid)
+        }
+    }
+    
+    private func fetchUserData(_ uuid: String) {
+        Backend.shared.requestUserData(with: uuid) { [weak self] userData in
+            guard let userData else { return }
+            DispatchQueue.main.async {
+                self?.nicknameLabel.text = userData.name
+            }
+        }
     }
 }
 

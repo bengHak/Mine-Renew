@@ -38,6 +38,13 @@ final class MainViewController: UIViewController {
         bind()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let unsubscribeToken else { return }
+        Amplify.Hub.removeListener(unsubscribeToken)
+        self.unsubscribeToken = nil
+    }
+    
     // MARK: - IBAction
     @IBAction func didTapRank(_ sender: Any) {
         pushViewControllerWithStoryBoard(.rank)
@@ -118,7 +125,7 @@ final class MainViewController: UIViewController {
     }
     
     private func listenAuthEvent() {
-        unsubscribeToken = Amplify.Hub.listen(to: .auth) { [weak self] payload in
+        unsubscribeToken = Amplify.Hub.listen(to: .auth) { payload in
             switch payload.eventName {
             case HubPayload.EventName.Auth.signedIn:
                 print("User signed in")

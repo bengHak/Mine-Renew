@@ -24,11 +24,10 @@ final class NickNameViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func didTapRegisterNickname(_ sender: Any) {
+        createProfile()
     }
     
     // MARK: - Helpers
-#warning("MyProfile 객체 저장하기")
-#warning("저장하고 Main으로")
     func createProfile() {
         guard let nickname = nicknameTextField.text,
               !nickname.isEmpty else {
@@ -61,8 +60,12 @@ final class NickNameViewController: UIViewController {
     }
     
     func showSignUpFailedAlert() {
-        let alert = UIAlertController(title: "회원가입 실패", message: "회원가입에 실패했습니다. 다시 시도해주세요.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        let alert = UIAlertController(title: "회원가입 실패", message: "회원가입에 실패했습니다.\n홈 화면으로 돌아갑니다.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.navigationController?.popToRootViewController(animated: true)
+            }
+        }
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }

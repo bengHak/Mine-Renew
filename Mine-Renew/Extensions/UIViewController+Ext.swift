@@ -12,6 +12,7 @@ enum StoryBoardName: String {
     case login = "AppleLoginViewController"
     case rank = "RankViewController"
     case history = "HistoryViewController"
+    case nickname = "NickNameViewController"
 }
 
 extension UIViewController {

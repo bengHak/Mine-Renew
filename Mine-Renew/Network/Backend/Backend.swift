@@ -9,6 +9,7 @@ import Amplify
 import AWSPluginsCore
 import AWSCognitoAuthPlugin
 import AWSAPIPlugin
+import AWSDataStorePlugin
 
 class Backend {
     static let shared = Backend()
@@ -21,6 +22,7 @@ class Backend {
         do {
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
             try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: AmplifyModels()))
+            try Amplify.add(plugin: AWSDataStorePlugin(modelRegistration: AmplifyModels()))
             try Amplify.configure()
             print("Initialized Amplify");
         } catch {
@@ -88,6 +90,46 @@ extension Backend {
                 print("User attributes - \(attributes)")
             case .failure(let error):
                 print("Fetching user attributes failed with error \(error)")
+            }
+        }
+    }
+    
+    func requestProfile(completion: @escaping (MyProfile?)->()) {
+        Amplify.API.query(request: .list(MyProfile.self)) { event in
+            switch event {
+            case .success(let result):
+                switch result {
+                case .success(let data):
+                    print("Successfully retrieved list of Profile")
+                    completion(data.first)
+                case .failure(let error):
+                    print("Can not retrieve result : error  \(error.errorDescription)")
+                    completion(nil)
+                }
+            case .failure(let error):
+                print("Can not retrieve Notes : error \(error)")
+                completion(nil)
+            }
+        }
+    }
+    
+    func requestUserData(with uuid: String, completion: @escaping (MineUser?)->()) {
+        let user = MineUser.keys
+        let predicate = user.profileUuid == uuid
+        Amplify.API.query(request: .list(MineUser.self, where: predicate)) { event in
+            switch event {
+            case .success(let result):
+                switch result {
+                case .success(let data):
+                    print("Successfully retrieved list of MineUser")
+                    completion(data.first)
+                case .failure(let error):
+                    print("Can not retrieve result : error  \(error.errorDescription)")
+                    completion(nil)
+                }
+            case .failure(let error):
+                print("Can not retrieve Notes : error \(error)")
+                completion(nil)
             }
         }
     }
@@ -167,19 +209,19 @@ extension Backend {
                 if let identityProvider = session as? AuthCognitoIdentityProvider {
                     let usersub = try identityProvider.getUserSub().get()
                     let identityId = try identityProvider.getIdentityId().get()
-                    print("User sub - \(usersub) and identity id \(identityId)")
+//                    print("User sub - \(usersub) and identity id \(identityId)")
                 }
                 
                 // Get AWS credentials
                 if let awsCredentialsProvider = session as? AuthAWSCredentialsProvider {
                     let credentials = try awsCredentialsProvider.getAWSCredentials().get()
-                    print("Access key - \(credentials.accessKey) ")
+//                    print("Access key - \(credentials.accessKey) ")
                 }
                 
                 // Get cognito user pool token
                 if let cognitoTokenProvider = session as? AuthCognitoTokensProvider {
                     let tokens = try cognitoTokenProvider.getCognitoTokens().get()
-                    print("Id token - \(tokens.idToken) ")
+//                    print("Id token - \(tokens.idToken) ")
                 }
                 completion(true)
             } catch {

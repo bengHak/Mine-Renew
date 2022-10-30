@@ -28,12 +28,21 @@ final class AppleLoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Backend.shared.accessCredential() { [weak self] isSignedIn in
-            guard isSignedIn else { return }
-            DispatchQueue.main.async {
-                self?.navigationController?.popToRootViewController(animated: true)
+        Backend.shared.accessCredential() { [weak self] success in
+            guard success else { return }
+            if success {
+                DispatchQueue.main.async {
+                    self?.navigationController?.popToRootViewController(animated: true)
+                }
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let unsubscribeToken else { return }
+        Amplify.Hub.removeListener(unsubscribeToken)
+        self.unsubscribeToken = nil
     }
     
     // MARK: - IBAction
@@ -46,7 +55,7 @@ final class AppleLoginViewController: UIViewController {
     }
     
     // MARK: - Helpers
-    func listenAuthEvent() {
+    private func listenAuthEvent() {
         unsubscribeToken = Amplify.Hub.listen(to: .auth) { [weak self] payload in
             switch payload.eventName {
             case HubPayload.EventName.Auth.signedIn:
@@ -64,17 +73,26 @@ final class AppleLoginViewController: UIViewController {
         }
     }
     
-    func bind() {
-        $isSignedIn.sink { [weak self] success in
-            guard let success else { return }
-            if success {
+    private func requestProfile() {
+        Backend.shared.requestProfile { [weak self] profile in
+            if profile != nil {
                 DispatchQueue.main.async {
-#warning("로그인 이후에 MyProfile이 0개인지 확인")
-#warning("0개면 nicknameVC push 하기")
-#warning("1개면 main으로 가기")
                     self?.navigationController?.popToRootViewController(animated: true)
                 }
+            } else {
+                DispatchQueue.main.async {
+                    self?.pushViewControllerWithStoryBoard(.nickname)
+                }
             }
+        }
+    }
+    
+    private func bind() {
+        $isSignedIn.sink { [weak self] success in
+            guard let success, success else {
+                return
+            }
+            self?.requestProfile()
         }.store(in: &subscriptions)
     }
 }
