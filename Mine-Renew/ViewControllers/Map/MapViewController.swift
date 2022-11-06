@@ -34,6 +34,7 @@ final class MapViewController: UIViewController {
     private var isFinished: Bool = false
     private let feedbackGenerator = UINotificationFeedbackGenerator()
     private let userNotiCenter = UNUserNotificationCenter.current()
+    private let kEarthRadius = 6378137.0
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
@@ -253,14 +254,14 @@ final class MapViewController: UIViewController {
         guard let previousCoordinate = self.boundary.last else {
             return
         }
-        let longtitude: CLLocationDegrees = location.coordinate.longitude
+        let longitude: CLLocationDegrees = location.coordinate.longitude
         let latitude:CLLocationDegrees = location.coordinate.latitude
         var points: [CLLocationCoordinate2D] = []
         let point1 = CLLocationCoordinate2DMake(previousCoordinate.latitude, previousCoordinate.longitude)
-        let point2 = CLLocationCoordinate2DMake(latitude, longtitude)
-        let distacne: CLLocationDistance = MKMapPoint(point1).distance(to: MKMapPoint(point2))
+        let point2 = CLLocationCoordinate2DMake(latitude, longitude)
+        let distance: CLLocationDistance = MKMapPoint(point1).distance(to: MKMapPoint(point2))
         // 이전 좌표와 2미터 이상 차이 날 때 그리기
-        if distacne < 2 { return }
+        if distance < 2 { return }
         points.append(point1)
         points.append(point2)
         let lineDraw = MKPolyline(coordinates: points, count:points.count)
@@ -279,10 +280,10 @@ final class MapViewController: UIViewController {
         
         let point1 = CLLocationCoordinate2DMake(startingCoordinate.latitude, startingCoordinate.longitude)
         let point2 = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        let distacne: CLLocationDistance = MKMapPoint(point1).distance(to: MKMapPoint(point2))
+        let distance: CLLocationDistance = MKMapPoint(point1).distance(to: MKMapPoint(point2))
         
         // 시작 지점에서 3미터 미만으로 가까워졌을 때
-        if distacne > 10 { return }
+        if distance > 10 { return }
         setTrackingDisabled()
         
         let polygon = MKPolygon(
@@ -376,11 +377,67 @@ extension MapViewController: CLLocationManagerDelegate {
 
 // MARK: - WalkingCompleteModalViewDelegate
 extension MapViewController: WalkingCompleteModalViewDelegate {
-    func didTapCancle() {
+    func didTapCancel() {
         completeModal.isHidden = true
     }
 
     func didTapSave() {
-        pushViewControllerWithStoryBoard(.login)
+        Task { [weak self] in
+            guard let profile: MyProfile = await Backend.shared.asyncRequestProfile() else {
+                self?.pushViewControllerWithStoryBoard(.login)
+                return
+            }
+            self?.uploadPath(profile.uuid)
+        }
+    }
+    
+    func uploadPath(_ userId: String) {
+        Task { [weak self] in
+            guard let self else { return }
+            let polygonId: String = UUID().uuidString
+            let pathList = self.boundary.map {
+                WalkingCoordinate(
+                    uuid: UUID().uuidString,
+                    polygonId: polygonId,
+                    latitude: $0.latitude,
+                    longitude: $0.longitude
+                )
+            }
+            
+            for path in pathList {
+                guard await Backend.shared.asyncUploadWalkingPath(path) else { return }
+            }
+            
+            let pathPolygon = PathPolygon(
+                uuid: polygonId,
+                userId: userId,
+                area: self.regionArea(locations: self.boundary)
+            )
+            
+            guard await Backend.shared.asyncUploadPathPolygon(pathPolygon) else { return }
+
+            DispatchQueue.main.async { [weak self] in
+                self?.pushViewControllerWithStoryBoard(.history)
+            }
+        }
+    }
+
+    func radians(degrees: Double) -> Double {
+        return degrees * .pi / 180
+    }
+
+    func regionArea(locations: [CLLocationCoordinate2D]) -> Double {
+
+        guard locations.count > 2 else { return 0 }
+        var area = 0.0
+
+        for i in 0..<locations.count {
+            let p1 = locations[i > 0 ? i - 1 : locations.count - 1]
+            let p2 = locations[i]
+
+            area += radians(degrees: p2.longitude - p1.longitude) * (2 + sin(radians(degrees: p1.latitude)) + sin(radians(degrees: p2.latitude)) )
+        }
+        area = -(area * kEarthRadius * kEarthRadius / 2)
+        return max(area, -area) // In order not to worry about is polygon clockwise or counterclockwise defined.
     }
 }

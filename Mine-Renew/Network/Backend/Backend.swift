@@ -10,6 +10,7 @@ import AWSPluginsCore
 import AWSCognitoAuthPlugin
 import AWSAPIPlugin
 import AWSDataStorePlugin
+import RxSwift
 
 class Backend {
     static let shared = Backend()
@@ -30,53 +31,111 @@ class Backend {
         }
     }
     
-    func uploadWalkingPath(_ polygon: PathPolygon) {
-        Amplify.API.mutate(request: .create(polygon)) { event in
-            switch event {
-            case .success(let result):
-                switch result {
-                case .success(let data):
-                    print("Successfully created polygon: \(data)")
+    func uploadWalkingPath(_ walkingPath: WalkingCoordinate) -> Single<Bool> {
+        Single<Bool>.create { single -> Disposable in
+            Amplify.API.mutate(request: .create(walkingPath)) { event in
+                switch event {
+                case .success(let result):
+                    switch result {
+                    case .success:
+                        single(.success(true))
+                    case .failure(let error):
+                        print("Got failed result with \(error.errorDescription)")
+                        single(.failure(error))
+                    }
                 case .failure(let error):
-                    print("Got failed result with \(error.errorDescription)")
+                    print("Got failed event with error \(error)")
+                    single(.failure(error))
                 }
-            case .failure(let error):
-                print("Got failed event with error \(error)")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    @discardableResult
+    func asyncUploadWalkingPath(_ walkingPath: WalkingCoordinate) async -> Bool {
+        await withCheckedContinuation { continuation in
+            Amplify.API.mutate(request: .create(walkingPath)) { event in
+                switch event {
+                case .success(let result):
+                    switch result {
+                    case .success:
+                        continuation.resume(returning: true)
+                    case .failure(let error):
+                        print("Got failed result with \(error.errorDescription)")
+                        continuation.resume(returning: false)
+                    }
+                case .failure(let error):
+                    print("Got failed event with error \(error)")
+                    continuation.resume(returning: false)
+                }
             }
         }
     }
     
-    func requestWalkingHistory(_ userUuid: String) {
-        Amplify.API.query(
-            request: .list(PathPolygon.self, where: PathPolygon.keys.uuid == userUuid)
-        ) { event in
-            switch event {
-            case .success(let result):
-                switch result {
-                case .success(let polygonList):
-                    print("Successfully retrieved list of Users")
-                    print(polygonList)
+    func asyncUploadPathPolygon(_ polygon: PathPolygon) async -> Bool {
+        await withCheckedContinuation { continuation in
+            Amplify.API.mutate(request: .create(polygon)) { event in
+                switch event {
+                case .success(let result):
+                    switch result {
+                    case .success(let data):
+                        print("Successfully created polygon: \(data)")
+                        continuation.resume(returning: true)
+                    case .failure(let error):
+                        print("Got failed result with \(error.errorDescription)")
+                        continuation.resume(returning: false)
+                    }
                 case .failure(let error):
-                    print("Can not retrieve result : error  \(error.errorDescription)")
+                    print("Got failed event with error \(error)")
+                    continuation.resume(returning: false)
                 }
-            case .failure(let error):
-                print("Can not retrieve Notes : error \(error)")
             }
         }
     }
     
-    func requestRanking() {
-        Amplify.DataStore.query(
-            MineUser.self,
-            sort: .by(.ascending(MineUser.keys.totalArea)),
-            paginate: .page(0, limit: 20)
-        ) {
-            switch $0 {
-            case .success(let result):
-                print("Users: \(result)")
-            case .failure(let error):
-                print("Error listing User - \(error.localizedDescription)")
+    func requestWalkingHistory(_ userUuid: String) -> Single<[PathPolygon]> {
+        Single<[PathPolygon]>.create { single -> Disposable in
+            Amplify.API.query(
+                request: .list(PathPolygon.self, where: PathPolygon.keys.uuid == userUuid)
+            ) { event in
+                switch event {
+                case .success(let result):
+                    switch result {
+                    case .success(let polygonList):
+                        print("Successfully retrieved list of Users")
+                        print(polygonList)
+                        single(.success(polygonList))
+                    case .failure(let error):
+                        print("Can not retrieve result : error  \(error.errorDescription)")
+                        single(.failure(error))
+                    }
+                case .failure(let error):
+                    print("Can not retrieve Notes : error \(error)")
+                    single(.failure(error))
+                }
             }
+            return Disposables.create()
+        }
+    }
+    
+    func requestRanking() -> Single<[MineUser]> {
+        Single<[MineUser]>.create { single -> Disposable in
+            Amplify.DataStore.query(
+                MineUser.self,
+                sort: .by(.ascending(MineUser.keys.totalArea)),
+                paginate: .page(0, limit: 20)
+            ) {
+                switch $0 {
+                case .success(let result):
+                    print("Users: \(result)")
+                    single(.success(result))
+                case .failure(let error):
+                    print("Error listing User - \(error.localizedDescription)")
+                    single(.failure(error))
+                }
+            }
+            return Disposables.create()
         }
     }
 }
@@ -109,6 +168,27 @@ extension Backend {
             case .failure(let error):
                 print("Can not retrieve Notes : error \(error)")
                 completion(nil)
+            }
+        }
+    }
+    
+    func asyncRequestProfile() async -> MyProfile? {
+        await withCheckedContinuation { continuation in
+            Amplify.API.query(request: .list(MyProfile.self)) { event in
+                switch event {
+                case .success(let result):
+                    switch result {
+                    case .success(let data):
+                        print("Successfully retrieved list of Profile")
+                        continuation.resume(returning: data.first)
+                    case .failure(let error):
+                        print("Can not retrieve result : error  \(error.errorDescription)")
+                        continuation.resume(returning: nil)
+                    }
+                case .failure(let error):
+                    print("Can not retrieve Notes : error \(error)")
+                    continuation.resume(returning: nil)
+                }
             }
         }
     }
