@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 
 protocol WalkingCompleteModalViewDelegate {
-    func didTapCancle()
+    func didTapCancel()
     func didTapSave()
 }
 
@@ -56,7 +56,7 @@ final class WalkingCompleteModalView: UIView {
     }
 
     @IBAction func didTapCancle(_ sender: Any) {
-        delegate?.didTapCancle()
+        delegate?.didTapCancel()
     }
 
     @IBAction func didTapSave(_ sender: Any) {

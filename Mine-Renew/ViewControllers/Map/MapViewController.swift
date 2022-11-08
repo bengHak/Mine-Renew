@@ -20,6 +20,10 @@ final class MapViewController: UIViewController {
     @IBOutlet weak var whiteOverlayView: UIView!
     @IBOutlet weak var countDownLabel: UILabel!
 
+    @IBOutlet weak var uploadPathStartLabel: UILabel!
+    @IBOutlet weak var uploadPathLabel: UILabel!
+    @IBOutlet weak var uploadPathSuccessLabel: UILabel!
+    
     // MARK: - Properties
     private let locationManager = CLLocationManager()
     private var startingCoordinate: CLLocationCoordinate2D?
@@ -383,18 +387,33 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
 
     func didTapSave() {
         Task { [weak self] in
-            guard let profile: MyProfile = await Backend.shared.asyncRequestProfile() else {
+            guard let self, let profile: MyProfile = await Backend.shared.asyncRequestProfile() else {
                 self?.pushViewControllerWithStoryBoard(.login)
                 return
             }
-            self?.uploadPath(profile.uuid)
+            DispatchQueue.main.async {
+                self.uploadPathLabel.isHidden = false
+            }
+            self.uploadPath(profile.uuid)
         }
     }
     
     func uploadPath(_ userId: String) {
         Task { [weak self] in
             guard let self else { return }
+            DispatchQueue.main.async {
+                self.uploadPathStartLabel.isHidden = false
+            }
+            
             let polygonId: String = UUID().uuidString
+            let pathPolygon = PathPolygon(
+                uuid: polygonId,
+                userId: userId,
+                area: self.regionArea(locations: self.boundary)
+            )
+            
+            guard await Backend.shared.asyncUploadPathPolygon(pathPolygon) else { return }
+            
             let pathList = self.boundary.map {
                 WalkingCoordinate(
                     uuid: UUID().uuidString,
@@ -408,14 +427,10 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
                 guard await Backend.shared.asyncUploadWalkingPath(path) else { return }
             }
             
-            let pathPolygon = PathPolygon(
-                uuid: polygonId,
-                userId: userId,
-                area: self.regionArea(locations: self.boundary)
-            )
+            DispatchQueue.main.async {
+                self.uploadPathSuccessLabel.isHidden = false
+            }
             
-            guard await Backend.shared.asyncUploadPathPolygon(pathPolygon) else { return }
-
             DispatchQueue.main.async { [weak self] in
                 self?.pushViewControllerWithStoryBoard(.history)
             }
@@ -426,15 +441,13 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
         return degrees * .pi / 180
     }
 
+    /// 제곱 킬로미터 기준
     func regionArea(locations: [CLLocationCoordinate2D]) -> Double {
-
         guard locations.count > 2 else { return 0 }
         var area = 0.0
-
         for i in 0..<locations.count {
             let p1 = locations[i > 0 ? i - 1 : locations.count - 1]
             let p2 = locations[i]
-
             area += radians(degrees: p2.longitude - p1.longitude) * (2 + sin(radians(degrees: p1.latitude)) + sin(radians(degrees: p2.latitude)) )
         }
         area = -(area * kEarthRadius * kEarthRadius / 2)

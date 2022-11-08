@@ -97,7 +97,7 @@ class Backend {
     func requestWalkingHistory(_ userUuid: String) -> Single<[PathPolygon]> {
         Single<[PathPolygon]>.create { single -> Disposable in
             Amplify.API.query(
-                request: .list(PathPolygon.self, where: PathPolygon.keys.uuid == userUuid)
+                request: .list(PathPolygon.self, where: PathPolygon.keys.userId == userUuid)
             ) { event in
                 switch event {
                 case .success(let result):

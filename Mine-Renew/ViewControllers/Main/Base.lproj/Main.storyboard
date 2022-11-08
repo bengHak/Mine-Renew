@@ -34,7 +34,7 @@
                                     <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="vdv-Ln-o5k" kind="show" id="i69-tH-MaA"/>
+                                    <segue destination="vpg-rZ-xa3" kind="show" id="9cv-hl-RQH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xls-iF-ECR">
@@ -111,16 +111,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9aw-Hv-5jT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1699" y="110"/>
-        </scene>
-        <!--AppleLoginViewController-->
-        <scene sceneID="WsU-DO-0hQ">
-            <objects>
-                <viewControllerPlaceholder storyboardName="AppleLoginViewController" id="vdv-Ln-o5k" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="BUc-Qn-MJo"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a34-9D-F10" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1711" y="207"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q26-jc-R5K">
