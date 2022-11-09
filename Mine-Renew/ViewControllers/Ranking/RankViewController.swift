@@ -34,6 +34,7 @@ final class RankViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSubviews()
+        configureCollectionView()
         fetchProfiles()
     }
 
@@ -50,6 +51,25 @@ final class RankViewController: UIViewController {
         let sundayText: String = dateFormatter.string(from: sunday)
         currentWeekLabel.text = "\(mondayText) - \(sundayText)"
     }
+    
+    private func configureCollectionView() {
+        let layout: UICollectionViewFlowLayout = .init()
+        layout.itemSize = .init(width: 360, height: 60)
+        layout.minimumInteritemSpacing = 10
+        collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionview.register(RankCollectionViewCell.self, forCellWithReuseIdentifier: RankCollectionViewCell.identifier)
+        collectionview.dataSource = self
+        collectionview.backgroundColor = .clear
+        collectionview.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(collectionview)
+        NSLayoutConstraint.activate([
+            collectionview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionview.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionview.topAnchor.constraint(equalTo: currentWeekLabel.bottomAnchor, constant: 300)
+        ])
+    }
 
     private func fetchProfiles() {
         Backend.shared.requestRanking(self.monday)
@@ -63,6 +83,7 @@ final class RankViewController: UIViewController {
                 }
                 DispatchQueue.main.async {
                     self.setRankImageLabels()
+                    self.collectionview.reloadData()
                 }
             }.disposed(by: disposeBag)
     }
@@ -88,6 +109,20 @@ final class RankViewController: UIViewController {
             rankThirdLabel.isHidden = false
             threeLabel.isHidden = false
         }
+    }
+}
+
+extension RankViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        rankProfileList.count - 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionview.dequeueReusableCell(withReuseIdentifier: RankCollectionViewCell.identifier, for: indexPath) as? RankCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.setData(indexPath.row + 4, rankProfileList[indexPath.row + 3])
+        return cell
     }
 }
 

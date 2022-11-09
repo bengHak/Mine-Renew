@@ -249,7 +249,7 @@ final class MapViewController: UIViewController {
         }
     }
 
-    // MARK: - Draw on mapview
+    // MARK: - Draw on mapView
     func addPolyline(with location: CLLocation) {
         guard let previousCoordinate = self.boundary.last else {
             return
@@ -274,7 +274,7 @@ final class MapViewController: UIViewController {
         guard !isFinished,
               let startingCoordinate = startingCoordinate,
               let startTime = startTime,
-              startTime.timeIntervalSinceNow < -60 else {
+              startTime.timeIntervalSinceNow < -180 else {
             return
         }
         
@@ -425,7 +425,7 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
                 }
             }
 
-            var newMineUser = mineUser
+            var newMineUser: MineUser = mineUser
             
             let date: Date = newMineUser.totalAreaLastUpdate.foundationDate
             let todayDate: Date = .init()
@@ -441,7 +441,7 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
             }
             newMineUser.totalArea += pathPolygon.area
             newMineUser.totalAreaLastUpdate = .init(todayDate)
-            
+
             guard await Backend.shared.asyncUpdateMineUser(newMineUser) else {
                 self.navigationController?.popViewController(animated: true)
                 return
