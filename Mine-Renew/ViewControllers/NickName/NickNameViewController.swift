@@ -41,12 +41,13 @@ final class NickNameViewController: UIViewController {
             profileUuid: profileUUID,
             name: nickname,
             totalArea: 0,
-            totalAreaLastUpdate: lastUpdate
+            totalAreaLastUpdate: lastUpdate,
+            currentWeekTotalArea: 0
         )
         
-        Backend.shared.addMineUser(user) { [weak self] result in
-            guard let result else { return }
-            let myProfile = MyProfile(uuid: profileUUID, userData: result, myProfileUserDataId: result.id)
+        Backend.shared.createMineUser(user) { [weak self] result in
+            guard result != nil else { return }
+            let myProfile = MyProfile(uuid: profileUUID)
             Backend.shared.addMyProfile(myProfile) { [weak self] result in
                 DispatchQueue.main.async {
                     if result {

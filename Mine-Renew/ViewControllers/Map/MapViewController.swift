@@ -19,10 +19,6 @@ final class MapViewController: UIViewController {
 
     @IBOutlet weak var whiteOverlayView: UIView!
     @IBOutlet weak var countDownLabel: UILabel!
-
-    @IBOutlet weak var uploadPathStartLabel: UILabel!
-    @IBOutlet weak var uploadPathLabel: UILabel!
-    @IBOutlet weak var uploadPathSuccessLabel: UILabel!
     
     // MARK: - Properties
     private let locationManager = CLLocationManager()
@@ -391,9 +387,6 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
                 self?.pushViewControllerWithStoryBoard(.login)
                 return
             }
-            DispatchQueue.main.async {
-                self.uploadPathLabel.isHidden = false
-            }
             self.uploadPath(profile.uuid)
         }
     }
@@ -401,18 +394,21 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
     func uploadPath(_ userId: String) {
         Task { [weak self] in
             guard let self else { return }
-            DispatchQueue.main.async {
-                self.uploadPathStartLabel.isHidden = false
+            guard let mineUser: MineUser = await Backend.shared.asyncRequestUserData(with: userId) else {
+                self.navigationController?.popViewController(animated: true)
+                return
             }
-            
+
             let polygonId: String = UUID().uuidString
             let pathPolygon = PathPolygon(
                 uuid: polygonId,
                 userId: userId,
                 area: self.regionArea(locations: self.boundary)
             )
-            
-            guard await Backend.shared.asyncUploadPathPolygon(pathPolygon) else { return }
+            guard await Backend.shared.asyncUploadPathPolygon(pathPolygon) else {
+                self.navigationController?.popViewController(animated: true)
+                return
+            }
             
             let pathList = self.boundary.map {
                 WalkingCoordinate(
@@ -422,15 +418,35 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
                     longitude: $0.longitude
                 )
             }
-            
             for path in pathList {
-                guard await Backend.shared.asyncUploadWalkingPath(path) else { return }
+                guard await Backend.shared.asyncUploadWalkingPath(path) else {
+                    self.navigationController?.popViewController(animated: true)
+                    return
+                }
             }
+
+            var newMineUser = mineUser
             
-            DispatchQueue.main.async {
-                self.uploadPathSuccessLabel.isHidden = false
+            let date: Date = newMineUser.totalAreaLastUpdate.foundationDate
+            let todayDate: Date = .init()
+            let weekday: Int = (Calendar.current.component(.weekday, from: date) + 5) % 7 // 월(0) ~ 일(6)
+            let today: Int = (Calendar.current.component(.weekday, from: todayDate) + 5) % 7
+            let timeDiff: Double = (todayDate.timeIntervalSince1970 - date.timeIntervalSince1970) * 60 * 60 * 24
+            
+            // 이번주 월요일부터 오늘까지의 구역 넓이를 계산한다.
+            if timeDiff > 6 || weekday > today {
+                newMineUser.currentWeekTotalArea = pathPolygon.area
+            } else {
+                newMineUser.currentWeekTotalArea += pathPolygon.area
             }
+            newMineUser.totalArea += pathPolygon.area
+            newMineUser.totalAreaLastUpdate = .init(todayDate)
             
+            guard await Backend.shared.asyncUpdateMineUser(newMineUser) else {
+                self.navigationController?.popViewController(animated: true)
+                return
+            }
+
             DispatchQueue.main.async { [weak self] in
                 self?.pushViewControllerWithStoryBoard(.history)
             }

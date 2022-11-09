@@ -9,7 +9,6 @@ import Amplify
 import AWSPluginsCore
 import AWSCognitoAuthPlugin
 import AWSAPIPlugin
-import AWSDataStorePlugin
 import RxSwift
 
 class Backend {
@@ -21,9 +20,9 @@ class Backend {
     private init() {
         // initialize amplify
         do {
+            let amplifyModels: AmplifyModels = AmplifyModels()
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
-            try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: AmplifyModels()))
-            try Amplify.add(plugin: AWSDataStorePlugin(modelRegistration: AmplifyModels()))
+            try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: amplifyModels))
             try Amplify.configure()
             print("Initialized Amplify");
         } catch {
@@ -119,19 +118,23 @@ class Backend {
         }
     }
     
-    func requestRanking() -> Single<[MineUser]> {
+    func requestRanking(_ mondayDate: Date) -> Single<[MineUser]> {
         Single<[MineUser]>.create { single -> Disposable in
-            Amplify.DataStore.query(
-                MineUser.self,
-                sort: .by(.ascending(MineUser.keys.totalArea)),
-                paginate: .page(0, limit: 20)
-            ) {
-                switch $0 {
+            let mineUser = MineUser.keys
+            Amplify.API.query(request: .list(MineUser.self,where: mineUser.totalAreaLastUpdate.gt(Temporal.Date(mondayDate)))) { event in
+                switch event {
                 case .success(let result):
-                    print("Users: \(result)")
-                    single(.success(result))
+                    switch result {
+                    case .success(let mineUserList):
+                        print("Successfully retrieved list of Users")
+                        print(mineUserList)
+                        single(.success(Array(mineUserList)))
+                    case .failure(let error):
+                        print("Can not retrieve result : error  \(error.errorDescription)")
+                        single(.failure(error))
+                    }
                 case .failure(let error):
-                    print("Error listing User - \(error.localizedDescription)")
+                    print("Can not retrieve Notes : error \(error)")
                     single(.failure(error))
                 }
             }
@@ -214,6 +217,30 @@ extension Backend {
         }
     }
     
+    func asyncRequestUserData(with uuid: String) async -> MineUser? {
+        await withCheckedContinuation { continuation in
+            let user = MineUser.keys
+            let predicate = user.profileUuid == uuid
+            Amplify.API.query(request: .list(MineUser.self, where: predicate)) { event in
+                switch event {
+                case .success(let result):
+                    switch result {
+                    case .success(let data):
+                        print("Successfully retrieved list of MineUser")
+                        continuation.resume(returning: data.first)
+                    case .failure(let error):
+                        print("Can not retrieve result : error  \(error.errorDescription)")
+                        continuation.resume(returning: nil)
+                    }
+                case .failure(let error):
+                    print("Can not retrieve Notes : error \(error)")
+                    continuation.resume(returning: nil)
+                }
+            }
+        }
+    }
+    
+    
     func addMyProfile(_ profile: MyProfile, completion: @escaping (Bool)->()) {
         Amplify.API.mutate(request: .create(profile)) { event in
             switch event {
@@ -233,7 +260,7 @@ extension Backend {
         }
     }
     
-    func addMineUser(_ user: MineUser, completion: @escaping (MineUser?)->()) {
+    func createMineUser(_ user: MineUser, completion: @escaping (MineUser?)->()) {
         Amplify.API.mutate(request: .create(user)) { event in
             switch event {
             case .success(let result):
@@ -248,6 +275,27 @@ extension Backend {
             case .failure(let error):
                 print("Got failed event with error \(error)")
                 completion(nil)
+            }
+        }
+    }
+    
+    func asyncUpdateMineUser(_ user: MineUser) async -> Bool {
+        await withCheckedContinuation { continuation in
+            Amplify.API.mutate(request: .update(user)) { event in
+                switch event {
+                case .success(let result):
+                    switch result {
+                    case .success(let data):
+                        print("Successfully update MineUser: \(data)")
+                        continuation.resume(returning: true)
+                    case .failure(let error):
+                        print("Got failed result with \(error.errorDescription)")
+                        continuation.resume(returning: false)
+                    }
+                case .failure(let error):
+                    print("Got failed event with error \(error)")
+                    continuation.resume(returning: false)
+                }
             }
         }
     }

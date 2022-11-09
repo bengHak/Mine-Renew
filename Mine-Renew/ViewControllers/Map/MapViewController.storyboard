@@ -83,29 +83,6 @@
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfn-Rc-2PQ" customClass="WalkingCompleteModalView" customModule="Mine_Renew" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                                <subviews>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="uploadPathSuccess" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ili-uQ-RaS">
-                                        <rect key="frame" x="221" y="781" width="151" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemRedColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="uploadPathStart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4BO-xL-Qqw">
-                                        <rect key="frame" x="221" y="762" width="124" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemRedColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="uploadPath" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DJ-h1-5rB">
-                                        <rect key="frame" x="221" y="741" width="87" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemRedColor"/>
-                                        <color key="highlightedColor" systemColor="systemRedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -138,9 +115,6 @@
                         <outlet property="completeModal" destination="gfn-Rc-2PQ" id="ZHL-yb-lv4"/>
                         <outlet property="countDownLabel" destination="fBI-Yx-qRf" id="m9N-tZ-7Mf"/>
                         <outlet property="mapView" destination="JlA-9V-xXY" id="IYo-jJ-Eae"/>
-                        <outlet property="uploadPathLabel" destination="8DJ-h1-5rB" id="oPf-U3-7tG"/>
-                        <outlet property="uploadPathStartLabel" destination="4BO-xL-Qqw" id="f5P-sa-AEL"/>
-                        <outlet property="uploadPathSuccessLabel" destination="ili-uQ-RaS" id="85t-GO-pVw"/>
                         <outlet property="walkingSpeedLabel" destination="UxR-e5-5cN" id="AWp-Bz-SLj"/>
                         <outlet property="walkingTimeLabel" destination="yxf-E5-Rmu" id="SeQ-oG-1kr"/>
                         <outlet property="whiteOverlayView" destination="zLl-6W-gEh" id="saZ-xn-5kI"/>
