@@ -12,10 +12,10 @@ struct PathUtils {
     /// 제일 서쪽에 있는 좌표의 x를 0으로 설정 -> xDiff
     /// 제일 북쪽에 있는 좌표의 y를 0으로 설정 -> yDiff
     static func getFramePosition(with paths: [CLLocationCoordinate2D]) -> [CGPoint] {
-        guard let xDiff: Double = paths.sorted(by: { $0.longitude < $1.longitude }).first?.longitude.datatypeValue,
-              let yDiff: Double = paths.sorted(by: { $0.latitude < $1.latitude }).first?.latitude.datatypeValue else {
+        guard let xDiff: Double = paths.sorted(by: { $0.longitude < $1.longitude }).first?.longitude.magnitude,
+              let yDiff: Double = paths.sorted(by: { $0.latitude < $1.latitude }).first?.latitude.magnitude else {
                 return []
             }
-        return paths.map { CGPoint(x: $0.longitude.datatypeValue - xDiff, y: $0.latitude.datatypeValue - yDiff) }
+        return paths.map { CGPoint(x: $0.longitude.magnitude - xDiff, y: $0.latitude.magnitude - yDiff) }
     }
 }

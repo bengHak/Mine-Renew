@@ -16,7 +16,8 @@ final class MainViewController: UIViewController {
     // MARK: - UI properties
     private let mineLottie = AnimationView(name: "Mine")
     @IBOutlet weak var historyButton: UIButton!
-
+    @IBOutlet weak var rankButton: UIButton!
+    
     // MARK: - Properties
     private var unsubscribeToken: UnsubscribeToken?
     @Published private var isSignedIn: Bool? = nil
@@ -152,6 +153,7 @@ final class MainViewController: UIViewController {
             guard let result else { return }
             DispatchQueue.main.async {
                 self?.historyButton.isHidden = !result
+                self?.rankButton.isHidden = !result
             }
         }.store(in: &subscriptions)
     }
