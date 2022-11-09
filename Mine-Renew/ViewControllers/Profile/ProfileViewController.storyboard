@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -58,6 +58,14 @@
                                     <color key="baseForegroundColor" systemColor="systemGreenColor"/>
                                     <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="didTapLogout:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jKW-6L-RLO"/>
                                 </connections>
@@ -73,6 +81,14 @@
                                     <color key="baseForegroundColor" systemColor="systemGreenColor"/>
                                     <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="deleteUser:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="9B1-xe-Jyc"/>
                                 </connections>
@@ -96,17 +112,43 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lME-Ux-Ae1">
+                                <rect key="frame" x="20" y="493" width="350" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2es-my-MNJ"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="개발자 정보">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
+                                    <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapDeveloperInfo:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="akO-pi-xFC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="lME-Ux-Ae1" firstAttribute="top" secondItem="V8G-jY-XpQ" secondAttribute="bottom" constant="8" symbolic="YES" id="1Ka-dq-kQ4"/>
                             <constraint firstItem="1pZ-KK-2tU" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="100" id="3xU-77-0tm"/>
                             <constraint firstItem="1pZ-KK-2tU" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="4MD-k8-FLQ"/>
                             <constraint firstItem="lIb-su-shv" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="4xG-uf-pRW"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lME-Ux-Ae1" secondAttribute="trailing" constant="20" id="5xj-PF-Lxz"/>
                             <constraint firstItem="03Z-K4-f3k" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="7oh-0e-Vn6"/>
                             <constraint firstItem="EnF-tK-mcW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8hz-OU-RKQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="V8G-jY-XpQ" secondAttribute="trailing" constant="20" id="B5q-x7-mqe"/>
                             <constraint firstItem="V8G-jY-XpQ" firstAttribute="top" secondItem="FqO-gD-AUr" secondAttribute="bottom" constant="8" symbolic="YES" id="G2m-fs-zvC"/>
+                            <constraint firstItem="lME-Ux-Ae1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="KQp-Hm-4YP"/>
                             <constraint firstItem="V8G-jY-XpQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Kqi-QB-vHy"/>
                             <constraint firstItem="h5X-hO-t5M" firstAttribute="centerX" secondItem="dKF-sA-abD" secondAttribute="centerX" id="L8q-Uo-l0s"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="EnF-tK-mcW" secondAttribute="trailing" id="Q60-a9-jrb"/>

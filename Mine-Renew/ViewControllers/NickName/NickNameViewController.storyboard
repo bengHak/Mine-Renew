@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="33m-SB-UFu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="33m-SB-UFu">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -79,6 +79,12 @@
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임은 수정할 수 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkC-Go-cgN">
+                                <rect key="frame" x="114.66666666666669" y="343" width="161" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eIA-Ha-Sob"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -87,6 +93,7 @@
                             <constraint firstItem="fXH-VG-L3U" firstAttribute="leading" secondItem="eIA-Ha-Sob" secondAttribute="leading" constant="20" id="5Rh-9V-VsR"/>
                             <constraint firstItem="kxP-fT-q0x" firstAttribute="centerX" secondItem="a88-QJ-VU5" secondAttribute="centerX" id="Cnb-BB-z7b"/>
                             <constraint firstItem="34B-jc-min" firstAttribute="centerX" secondItem="a88-QJ-VU5" secondAttribute="centerX" id="G9W-kz-oLH"/>
+                            <constraint firstItem="rkC-Go-cgN" firstAttribute="top" secondItem="DOD-9l-gxB" secondAttribute="bottom" constant="-0.66666666666668561" id="ISd-ql-sAz"/>
                             <constraint firstItem="aDU-hN-in8" firstAttribute="leading" secondItem="eIA-Ha-Sob" secondAttribute="leading" constant="16" id="JWq-as-nPD"/>
                             <constraint firstAttribute="trailing" secondItem="a88-QJ-VU5" secondAttribute="trailing" id="Jp2-vp-JfF"/>
                             <constraint firstAttribute="bottom" secondItem="a88-QJ-VU5" secondAttribute="bottom" id="Jq9-Kl-jjI"/>
@@ -100,6 +107,7 @@
                             <constraint firstItem="DOD-9l-gxB" firstAttribute="centerX" secondItem="30v-H2-O5t" secondAttribute="centerX" id="dNH-gq-SNz"/>
                             <constraint firstItem="a88-QJ-VU5" firstAttribute="top" secondItem="UGc-ET-zde" secondAttribute="top" id="e0g-PJ-hhy"/>
                             <constraint firstItem="a88-QJ-VU5" firstAttribute="leading" secondItem="UGc-ET-zde" secondAttribute="leading" id="iGK-zk-3Ur"/>
+                            <constraint firstItem="rkC-Go-cgN" firstAttribute="centerX" secondItem="eIA-Ha-Sob" secondAttribute="centerX" id="mIu-99-Khc"/>
                             <constraint firstItem="eIA-Ha-Sob" firstAttribute="trailing" secondItem="CEN-ZQ-Q4S" secondAttribute="trailing" constant="-10" id="nWD-5T-LMD"/>
                             <constraint firstItem="CEN-ZQ-Q4S" firstAttribute="top" secondItem="30v-H2-O5t" secondAttribute="top" constant="-45" id="wi7-as-eLH"/>
                             <constraint firstItem="aDU-hN-in8" firstAttribute="top" secondItem="eIA-Ha-Sob" secondAttribute="top" constant="10" id="wwD-O1-cbI"/>

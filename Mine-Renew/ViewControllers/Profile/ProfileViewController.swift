@@ -37,7 +37,18 @@ final class ProfileViewController: UIViewController {
         }
     }
     
+    @IBAction func didTapDeveloperInfo(_ sender: Any) {
+        showDeveloperAlert()   
+    }
+    
     // MARK: - Helpers
+    private func showDeveloperAlert() {
+        let alert = UIAlertController(title: "개발자 정보", message: "📱 iOS 개발: 브로디, 토비\n⚙️ 서버: 비비\n📝 기획: 로운, 헤이든\n🎨 앱 디자인: 헤이든", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
     func showDeleteUserAlert() {
         let alert = UIAlertController(title: "회원 탈퇴", message: "정말로 탈퇴하시겠습니까?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
