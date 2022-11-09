@@ -274,7 +274,7 @@ final class MapViewController: UIViewController {
         guard !isFinished,
               let startingCoordinate = startingCoordinate,
               let startTime = startTime,
-              startTime.timeIntervalSinceNow < -180 else {
+              startTime.timeIntervalSinceNow < -10 else {
             return
         }
         
@@ -387,6 +387,7 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
                 self?.pushViewControllerWithStoryBoard(.login)
                 return
             }
+            showIndicator()
             self.uploadPath(profile.uuid)
         }
     }
@@ -395,6 +396,7 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
         Task { [weak self] in
             guard let self else { return }
             guard let mineUser: MineUser = await Backend.shared.asyncRequestUserData(with: userId) else {
+                self.dismissIndicator()
                 self.navigationController?.popViewController(animated: true)
                 return
             }
@@ -406,6 +408,7 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
                 area: self.regionArea(locations: self.boundary)
             )
             guard await Backend.shared.asyncUploadPathPolygon(pathPolygon) else {
+                self.dismissIndicator()
                 self.navigationController?.popViewController(animated: true)
                 return
             }
@@ -420,6 +423,7 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
             }
             for path in pathList {
                 guard await Backend.shared.asyncUploadWalkingPath(path) else {
+                    self.dismissIndicator()
                     self.navigationController?.popViewController(animated: true)
                     return
                 }
@@ -443,11 +447,13 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
             newMineUser.totalAreaLastUpdate = .init(todayDate)
 
             guard await Backend.shared.asyncUpdateMineUser(newMineUser) else {
+                self.dismissIndicator()
                 self.navigationController?.popViewController(animated: true)
                 return
             }
 
             DispatchQueue.main.async { [weak self] in
+                self?.dismissIndicator()
                 self?.pushViewControllerWithStoryBoard(.history)
             }
         }

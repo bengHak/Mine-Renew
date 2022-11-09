@@ -41,6 +41,7 @@
 		6031E253291B705A0072289B /* WalkingCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E24A291B705A0072289B /* WalkingCoordinate.swift */; };
 		6031E254291B705A0072289B /* WalkingCoordinate+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E24B291B705A0072289B /* WalkingCoordinate+Schema.swift */; };
 		6031E256291B788A0072289B /* RankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E255291B788A0072289B /* RankCollectionViewCell.swift */; };
+		6031E258291B82310072289B /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E257291B82310072289B /* IndicatorView.swift */; };
 		60357353291B1DD0009C21EA /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60357352291B1DD0009C21EA /* Date+Ext.swift */; };
 		60357355291B2115009C21EA /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60357354291B2115009C21EA /* Array+Ext.swift */; };
 		60357361291B21F7009C21EA /* amplify/generated/models/MineUser+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60357358291B21F6009C21EA /* amplify/generated/models/MineUser+Schema.swift */; };
@@ -150,6 +151,7 @@
 		6031E24A291B705A0072289B /* WalkingCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkingCoordinate.swift; sourceTree = "<group>"; };
 		6031E24B291B705A0072289B /* WalkingCoordinate+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WalkingCoordinate+Schema.swift"; sourceTree = "<group>"; };
 		6031E255291B788A0072289B /* RankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankCollectionViewCell.swift; sourceTree = "<group>"; };
+		6031E257291B82310072289B /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		60357352291B1DD0009C21EA /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		60357354291B2115009C21EA /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 		60357358291B21F6009C21EA /* amplify/generated/models/MineUser+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "amplify/generated/models/MineUser+Schema.swift"; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				6057F6C8291961540013D45E /* PathUtils.swift */,
+				6031E257291B82310072289B /* IndicatorView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				60D16ABD290EA272006B20CD /* RankViewController.swift in Sources */,
 				60D16AB7290EA163006B20CD /* HistoryViewController.swift in Sources */,
 				60D16AB5290E974B006B20CD /* UIViewController+Ext.swift in Sources */,
+				6031E258291B82310072289B /* IndicatorView.swift in Sources */,
 				7195F3C43C134E281140D17C /* amplify/generated/models/MineUser.swift in Sources */,
 				05AE2B97FD80E7B23A56B99A /* MyProfile+Schema.swift in Sources */,
 				6031E241291B62B10072289B /* amplify/generated/models/WalkingCoordinate+Schema.swift in Sources */,

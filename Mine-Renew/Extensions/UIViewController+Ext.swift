@@ -35,5 +35,14 @@ extension UIViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: name.rawValue, bundle: nil)
         return storyboard.instantiateInitialViewController()
     }
+    
+    func showIndicator() {
+        IndicatorView.shared.show()
+        IndicatorView.shared.showIndicator()
+    }
+    
+    @objc func dismissIndicator() {
+        IndicatorView.shared.dismiss()
+    }
 }
 
