@@ -412,22 +412,6 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
                 self.navigationController?.popViewController(animated: true)
                 return
             }
-            
-            let pathList = self.boundary.map {
-                WalkingCoordinate(
-                    uuid: UUID().uuidString,
-                    polygonId: polygonId,
-                    latitude: $0.latitude,
-                    longitude: $0.longitude
-                )
-            }
-            for path in pathList {
-                guard await Backend.shared.asyncUploadWalkingPath(path) else {
-                    self.dismissIndicator()
-                    self.navigationController?.popViewController(animated: true)
-                    return
-                }
-            }
 
             var newMineUser: MineUser = mineUser
             
