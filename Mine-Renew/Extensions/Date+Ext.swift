@@ -9,6 +9,10 @@ import Foundation
 
 extension Date {
     static func getMonday(myDate: Date) -> Date {
+        if Calendar.current.component(.weekday, from: myDate) == 1 {
+            let yesterday: Date = .init(timeIntervalSince1970: myDate.timeIntervalSince1970 - 24*60*60)
+            return Date.getMonday(myDate: yesterday)
+        }
         let cal = Calendar.current
         var comps = cal.dateComponents([.weekOfYear, .yearForWeekOfYear], from: myDate)
         comps.weekday = 2 // 월요일

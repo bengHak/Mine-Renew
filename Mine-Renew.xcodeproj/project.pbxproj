@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		05AE2B97FD80E7B23A56B99A /* MyProfile+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B553A9AFDAAEE0795844E8 /* MyProfile+Schema.swift */; };
 		07A5EC5AF7CB891540CE6187 /* MineUser+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABCB13A5ADCA2688A5A9E6E /* MineUser+Schema.swift */; };
+		0F91A3F497CD10DA78B96153 /* WalkingCoordinate+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679D3A60E5228FD4CB3D1E8A /* WalkingCoordinate+Schema.swift */; };
 		2918EF89650A676156EADC47 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EEDE9E5F7A9385FE0EC7E9 /* AmplifyModels.swift */; };
+		2D4C0BCACD9B00F9CD98A4DD /* amplify/generated/models/WalkingCoordinate+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605E11F5290D2AC600DF125F /* amplify/generated/models/WalkingCoordinate+Schema.swift */; };
 		2EA75C425ED202C68515A72B /* WalkingCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362B26CC6485503DE5FB67A3 /* WalkingCoordinate.swift */; };
 		351BE0B147BF116197548077 /* PathPolygon+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C506EE96B3626C55CDA4B85 /* PathPolygon+Schema.swift */; };
 		48EB9F014D4BCDBBC92D83F3 /* amplify/generated/models/AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D16A87290E6732006B20CD /* amplify/generated/models/AmplifyModels.swift */; };
@@ -31,15 +33,7 @@
 		6031E23A291B62B10072289B /* amplify/generated/models/MineUser+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E231291B62B10072289B /* amplify/generated/models/MineUser+Schema.swift */; };
 		6031E23F291B62B10072289B /* amplify/generated/models/MineUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E236291B62B10072289B /* amplify/generated/models/MineUser.swift */; };
 		6031E241291B62B10072289B /* amplify/generated/models/WalkingCoordinate+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E238291B62B10072289B /* amplify/generated/models/WalkingCoordinate+Schema.swift */; };
-		6031E24C291B705A0072289B /* PathPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E243291B705A0072289B /* PathPolygon.swift */; };
-		6031E24D291B705A0072289B /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E244291B705A0072289B /* MyProfile.swift */; };
-		6031E24E291B705A0072289B /* MineUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E245291B705A0072289B /* MineUser.swift */; };
-		6031E24F291B705A0072289B /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E246291B705A0072289B /* AmplifyModels.swift */; };
-		6031E250291B705A0072289B /* MineUser+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E247291B705A0072289B /* MineUser+Schema.swift */; };
-		6031E251291B705A0072289B /* PathPolygon+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E248291B705A0072289B /* PathPolygon+Schema.swift */; };
-		6031E252291B705A0072289B /* MyProfile+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E249291B705A0072289B /* MyProfile+Schema.swift */; };
-		6031E253291B705A0072289B /* WalkingCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E24A291B705A0072289B /* WalkingCoordinate.swift */; };
-		6031E254291B705A0072289B /* WalkingCoordinate+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E24B291B705A0072289B /* WalkingCoordinate+Schema.swift */; };
+		6031E250291B705A0072289B /* amplify/generated/models/MineUser+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E247291B705A0072289B /* amplify/generated/models/MineUser+Schema.swift */; };
 		6031E256291B788A0072289B /* RankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E255291B788A0072289B /* RankCollectionViewCell.swift */; };
 		6031E258291B82310072289B /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031E257291B82310072289B /* IndicatorView.swift */; };
 		60357353291B1DD0009C21EA /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60357352291B1DD0009C21EA /* Date+Ext.swift */; };
@@ -59,6 +53,17 @@
 		6095F950291804600048E328 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6095F94F291804600048E328 /* RxSwift */; };
 		60AB0EF428CDAC480095D921 /* AppleLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AB0EF328CDAC480095D921 /* AppleLoginViewController.swift */; };
 		60AB0EF628CDAC960095D921 /* AppleLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60AB0EF528CDAC960095D921 /* AppleLoginViewController.storyboard */; };
+		60CF9F0929213E4000A75200 /* amplify/generated/models/PathPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF9EFD29213E3F00A75200 /* amplify/generated/models/PathPolygon.swift */; };
+		60CF9F1429213E4000A75200 /* amplify/generated/models/WalkingCoordinate+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF9F0829213E4000A75200 /* amplify/generated/models/WalkingCoordinate+Schema.swift */; };
+		60CF9F1E29213EE500A75200 /* MineUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF9F1529213EE500A75200 /* MineUser.swift */; };
+		60CF9F1F29213EE500A75200 /* MyProfile+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF9F1629213EE500A75200 /* MyProfile+Schema.swift */; };
+		60CF9F2029213EE500A75200 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF9F1729213EE500A75200 /* AmplifyModels.swift */; };
+		60CF9F2129213EE500A75200 /* PathPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF9F1829213EE500A75200 /* PathPolygon.swift */; };
+		60CF9F2229213EE500A75200 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF9F1929213EE500A75200 /* MyProfile.swift */; };
+		60CF9F2329213EE500A75200 /* MineUser+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF9F1A29213EE500A75200 /* MineUser+Schema.swift */; };
+		60CF9F2429213EE500A75200 /* WalkingCoordinate+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF9F1B29213EE500A75200 /* WalkingCoordinate+Schema.swift */; };
+		60CF9F2529213EE500A75200 /* WalkingCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF9F1C29213EE500A75200 /* WalkingCoordinate.swift */; };
+		60CF9F2629213EE500A75200 /* PathPolygon+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF9F1D29213EE500A75200 /* PathPolygon+Schema.swift */; };
 		60D16A8F290E6732006B20CD /* amplify/generated/models/MineUser+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D16A86290E6732006B20CD /* amplify/generated/models/MineUser+Schema.swift */; };
 		60D16A92290E6732006B20CD /* amplify/generated/models/MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D16A89290E6732006B20CD /* amplify/generated/models/MyProfile.swift */; };
 		60D16A9A290E6EA9006B20CD /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 60D16A99290E6EA9006B20CD /* IQKeyboardManagerSwift */; };
@@ -90,12 +95,13 @@
 		6786E7F757C0E4D90BFAC964 /* amplify/generated/models/PathPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605E11F1290D2AC600DF125F /* amplify/generated/models/PathPolygon.swift */; };
 		7195F3C43C134E281140D17C /* amplify/generated/models/MineUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D16A88290E6732006B20CD /* amplify/generated/models/MineUser.swift */; };
 		7FCCC5D87B5F3EC8BBA085B2 /* MineUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB4C4BEEA344423148683A /* MineUser.swift */; };
-		94EF18345B900CA5FC1CB74A /* (null) in Sources */ = {isa = PBXBuildFile; };
+		8546335C92266F76E30FF0BA /* amplify/generated/models/PathPolygon+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605E1209290D33FD00DF125F /* amplify/generated/models/PathPolygon+Schema.swift */; };
+		8936CF5A40724187541B101E /* amplify/generated/models/MyProfile+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605E121F290E636F00DF125F /* amplify/generated/models/MyProfile+Schema.swift */; };
 		9D87921D46819FACD983E156 /* amplify/generated/models/MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605E121E290E636F00DF125F /* amplify/generated/models/MyProfile.swift */; };
-		BA01552BF83F766610D089F5 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		C324EE6DFCFFA9CBEAC6390E /* amplify/generated/models/MineUser+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D16AA3290E8E8C006B20CD /* amplify/generated/models/MineUser+Schema.swift */; };
 		CB6AB4D371FD1DF359C37DE1 /* amplify/generated/models/WalkingCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D16A8D290E6732006B20CD /* amplify/generated/models/WalkingCoordinate.swift */; };
 		CEEBA991D8156E60F6B6A9B1 /* amplify/generated/models/PathPolygon+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605E11F6290D2AC600DF125F /* amplify/generated/models/PathPolygon+Schema.swift */; };
+		D70885FC79AA34773AFA26B2 /* amplify/generated/models/WalkingCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605E11F7290D2AC600DF125F /* amplify/generated/models/WalkingCoordinate.swift */; };
 		ECBC794AFF8F36900FE51843 /* amplify/generated/models/PathPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605E1227290E64D700DF125F /* amplify/generated/models/PathPolygon.swift */; };
 		FB893BBBB3A4D5B47D4DA1D8 /* amplify/generated/models/MyProfile+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D16A8B290E6732006B20CD /* amplify/generated/models/MyProfile+Schema.swift */; };
 /* End PBXBuildFile section */
@@ -121,6 +127,7 @@
 		02EEDE9E5F7A9385FE0EC7E9 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 		1026808555BFD362CEFC32FD /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		10E2D9CD1BD5AC8D976E3773 /* PathPolygon.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = PathPolygon.swift; path = amplify/generated/models/PathPolygon.swift; sourceTree = "<group>"; };
+		2B6D0969E4A597DAC4A9FE80 /* WalkingCoordinateDev+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "WalkingCoordinateDev+Schema.swift"; path = "amplify/generated/models/WalkingCoordinateDev+Schema.swift"; sourceTree = "<group>"; };
 		362B26CC6485503DE5FB67A3 /* WalkingCoordinate.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = WalkingCoordinate.swift; path = amplify/generated/models/WalkingCoordinate.swift; sourceTree = "<group>"; };
 		4B8F05DE7EA343B729271A7B /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		6005D1C729186FA200E98A34 /* HistoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -141,15 +148,8 @@
 		6031E231291B62B10072289B /* amplify/generated/models/MineUser+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "amplify/generated/models/MineUser+Schema.swift"; sourceTree = "<group>"; };
 		6031E236291B62B10072289B /* amplify/generated/models/MineUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = amplify/generated/models/MineUser.swift; sourceTree = "<group>"; };
 		6031E238291B62B10072289B /* amplify/generated/models/WalkingCoordinate+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "amplify/generated/models/WalkingCoordinate+Schema.swift"; sourceTree = "<group>"; };
-		6031E243291B705A0072289B /* PathPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathPolygon.swift; sourceTree = "<group>"; };
-		6031E244291B705A0072289B /* MyProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
 		6031E245291B705A0072289B /* MineUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineUser.swift; sourceTree = "<group>"; };
-		6031E246291B705A0072289B /* AmplifyModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplifyModels.swift; sourceTree = "<group>"; };
-		6031E247291B705A0072289B /* MineUser+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MineUser+Schema.swift"; sourceTree = "<group>"; };
-		6031E248291B705A0072289B /* PathPolygon+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PathPolygon+Schema.swift"; sourceTree = "<group>"; };
-		6031E249291B705A0072289B /* MyProfile+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyProfile+Schema.swift"; sourceTree = "<group>"; };
-		6031E24A291B705A0072289B /* WalkingCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkingCoordinate.swift; sourceTree = "<group>"; };
-		6031E24B291B705A0072289B /* WalkingCoordinate+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WalkingCoordinate+Schema.swift"; sourceTree = "<group>"; };
+		6031E247291B705A0072289B /* amplify/generated/models/MineUser+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "amplify/generated/models/MineUser+Schema.swift"; sourceTree = "<group>"; };
 		6031E255291B788A0072289B /* RankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankCollectionViewCell.swift; sourceTree = "<group>"; };
 		6031E257291B82310072289B /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		60357352291B1DD0009C21EA /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
@@ -174,9 +174,24 @@
 		6075116C28CE12070027D13F /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
 		6075119828CEEDF50027D13F /* amplifyconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		6075119928CEEDF50027D13F /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		6088223B291EAEFB00D9A2DF /* amplify/generated/models/PathPolygonDev+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "amplify/generated/models/PathPolygonDev+Schema.swift"; sourceTree = "<group>"; };
+		6088223D291EAEFB00D9A2DF /* amplify/generated/models/WalkingCoordinateDev.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = amplify/generated/models/WalkingCoordinateDev.swift; sourceTree = "<group>"; };
+		6088223E291EAEFB00D9A2DF /* amplify/generated/models/PathPolygonDev.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = amplify/generated/models/PathPolygonDev.swift; sourceTree = "<group>"; };
 		60AB0EF328CDAC480095D921 /* AppleLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginViewController.swift; sourceTree = "<group>"; };
 		60AB0EF528CDAC960095D921 /* AppleLoginViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppleLoginViewController.storyboard; sourceTree = "<group>"; };
 		60AB0EF728CDAF710095D921 /* Mine-Renew.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mine-Renew.entitlements"; sourceTree = "<group>"; };
+		60CF9EFD29213E3F00A75200 /* amplify/generated/models/PathPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = amplify/generated/models/PathPolygon.swift; sourceTree = "<group>"; };
+		60CF9F0229213E3F00A75200 /* amplify/generated/models/PathPolygonDev+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "amplify/generated/models/PathPolygonDev+Schema.swift"; sourceTree = "<group>"; };
+		60CF9F0829213E4000A75200 /* amplify/generated/models/WalkingCoordinate+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "amplify/generated/models/WalkingCoordinate+Schema.swift"; sourceTree = "<group>"; };
+		60CF9F1529213EE500A75200 /* MineUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineUser.swift; sourceTree = "<group>"; };
+		60CF9F1629213EE500A75200 /* MyProfile+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyProfile+Schema.swift"; sourceTree = "<group>"; };
+		60CF9F1729213EE500A75200 /* AmplifyModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplifyModels.swift; sourceTree = "<group>"; };
+		60CF9F1829213EE500A75200 /* PathPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathPolygon.swift; sourceTree = "<group>"; };
+		60CF9F1929213EE500A75200 /* MyProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
+		60CF9F1A29213EE500A75200 /* MineUser+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MineUser+Schema.swift"; sourceTree = "<group>"; };
+		60CF9F1B29213EE500A75200 /* WalkingCoordinate+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WalkingCoordinate+Schema.swift"; sourceTree = "<group>"; };
+		60CF9F1C29213EE500A75200 /* WalkingCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkingCoordinate.swift; sourceTree = "<group>"; };
+		60CF9F1D29213EE500A75200 /* PathPolygon+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PathPolygon+Schema.swift"; sourceTree = "<group>"; };
 		60D16A85290E6732006B20CD /* amplify/generated/models/PathPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = amplify/generated/models/PathPolygon.swift; sourceTree = "<group>"; };
 		60D16A86290E6732006B20CD /* amplify/generated/models/MineUser+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "amplify/generated/models/MineUser+Schema.swift"; sourceTree = "<group>"; };
 		60D16A87290E6732006B20CD /* amplify/generated/models/AmplifyModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
@@ -208,8 +223,11 @@
 		60EFE44028CCE9B9001A272C /* WalkingCompleteModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkingCompleteModalView.xib; sourceTree = "<group>"; };
 		679D3A60E5228FD4CB3D1E8A /* WalkingCoordinate+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "WalkingCoordinate+Schema.swift"; path = "amplify/generated/models/WalkingCoordinate+Schema.swift"; sourceTree = "<group>"; };
 		6C506EE96B3626C55CDA4B85 /* PathPolygon+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "PathPolygon+Schema.swift"; path = "amplify/generated/models/PathPolygon+Schema.swift"; sourceTree = "<group>"; };
+		6EF3BAA7DC4D86F2C33F1FC3 /* PathPolygonDev+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "PathPolygonDev+Schema.swift"; path = "amplify/generated/models/PathPolygonDev+Schema.swift"; sourceTree = "<group>"; };
+		8135D56E47B18BD9EDBF3072 /* WalkingCoordinateDev.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = WalkingCoordinateDev.swift; path = amplify/generated/models/WalkingCoordinateDev.swift; sourceTree = "<group>"; };
 		B9C9659CA043DDE5E4436CD7 /* MyProfile.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = MyProfile.swift; path = amplify/generated/models/MyProfile.swift; sourceTree = "<group>"; };
 		BBFB4C4BEEA344423148683A /* MineUser.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = MineUser.swift; path = amplify/generated/models/MineUser.swift; sourceTree = "<group>"; };
+		C39C7F173687CB738D428E02 /* PathPolygonDev.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = PathPolygonDev.swift; path = amplify/generated/models/PathPolygonDev.swift; sourceTree = "<group>"; };
 		CABCB13A5ADCA2688A5A9E6E /* MineUser+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "MineUser+Schema.swift"; path = "amplify/generated/models/MineUser+Schema.swift"; sourceTree = "<group>"; };
 		E9B553A9AFDAAEE0795844E8 /* MyProfile+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "MyProfile+Schema.swift"; path = "amplify/generated/models/MyProfile+Schema.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -396,15 +414,15 @@
 		60D16A84290E6732006B20CD /* models */ = {
 			isa = PBXGroup;
 			children = (
-				6031E246291B705A0072289B /* AmplifyModels.swift */,
-				6031E245291B705A0072289B /* MineUser.swift */,
-				6031E247291B705A0072289B /* MineUser+Schema.swift */,
-				6031E244291B705A0072289B /* MyProfile.swift */,
-				6031E249291B705A0072289B /* MyProfile+Schema.swift */,
-				6031E243291B705A0072289B /* PathPolygon.swift */,
-				6031E248291B705A0072289B /* PathPolygon+Schema.swift */,
-				6031E24A291B705A0072289B /* WalkingCoordinate.swift */,
-				6031E24B291B705A0072289B /* WalkingCoordinate+Schema.swift */,
+				60CF9F1729213EE500A75200 /* AmplifyModels.swift */,
+				60CF9F1529213EE500A75200 /* MineUser.swift */,
+				60CF9F1A29213EE500A75200 /* MineUser+Schema.swift */,
+				60CF9F1929213EE500A75200 /* MyProfile.swift */,
+				60CF9F1629213EE500A75200 /* MyProfile+Schema.swift */,
+				60CF9F1829213EE500A75200 /* PathPolygon.swift */,
+				60CF9F1D29213EE500A75200 /* PathPolygon+Schema.swift */,
+				60CF9F1C29213EE500A75200 /* WalkingCoordinate.swift */,
+				60CF9F1B29213EE500A75200 /* WalkingCoordinate+Schema.swift */,
 			);
 			name = models;
 			path = amplify/generated/models;
@@ -538,6 +556,18 @@
 				6031E231291B62B10072289B /* amplify/generated/models/MineUser+Schema.swift */,
 				6031E236291B62B10072289B /* amplify/generated/models/MineUser.swift */,
 				6031E238291B62B10072289B /* amplify/generated/models/WalkingCoordinate+Schema.swift */,
+				6EF3BAA7DC4D86F2C33F1FC3 /* PathPolygonDev+Schema.swift */,
+				C39C7F173687CB738D428E02 /* PathPolygonDev.swift */,
+				2B6D0969E4A597DAC4A9FE80 /* WalkingCoordinateDev+Schema.swift */,
+				8135D56E47B18BD9EDBF3072 /* WalkingCoordinateDev.swift */,
+				6088223B291EAEFB00D9A2DF /* amplify/generated/models/PathPolygonDev+Schema.swift */,
+				6088223D291EAEFB00D9A2DF /* amplify/generated/models/WalkingCoordinateDev.swift */,
+				6031E247291B705A0072289B /* amplify/generated/models/MineUser+Schema.swift */,
+				6031E245291B705A0072289B /* MineUser.swift */,
+				6088223E291EAEFB00D9A2DF /* amplify/generated/models/PathPolygonDev.swift */,
+				60CF9EFD29213E3F00A75200 /* amplify/generated/models/PathPolygon.swift */,
+				60CF9F0229213E3F00A75200 /* amplify/generated/models/PathPolygonDev+Schema.swift */,
+				60CF9F0829213E4000A75200 /* amplify/generated/models/WalkingCoordinate+Schema.swift */,
 			);
 			name = AmplifyModels;
 			sourceTree = "<group>";
@@ -712,50 +742,48 @@
 			buildActionMask = 2147483647;
 			files = (
 				605E11F9290D2AC600DF125F /* amplify/generated/models/AmplifyModels.swift in Sources */,
-				6031E24E291B705A0072289B /* MineUser.swift in Sources */,
-				6031E250291B705A0072289B /* MineUser+Schema.swift in Sources */,
-				6031E24D291B705A0072289B /* MyProfile.swift in Sources */,
+				6031E250291B705A0072289B /* amplify/generated/models/MineUser+Schema.swift in Sources */,
+				60CF9F1E29213EE500A75200 /* MineUser.swift in Sources */,
 				60D16A92290E6732006B20CD /* amplify/generated/models/MyProfile.swift in Sources */,
 				605E121B290E4A7500DF125F /* amplify/generated/models/PathPolygon.swift in Sources */,
-				6031E24C291B705A0072289B /* PathPolygon.swift in Sources */,
 				60357355291B2115009C21EA /* Array+Ext.swift in Sources */,
 				605E123D290E651500DF125F /* amplify/generated/models/PathPolygon+Schema.swift in Sources */,
 				60EFE43528CC6DB9001A272C /* UIColor+Ext.swift in Sources */,
 				60D16AB3290E916C006B20CD /* ProfileViewController.swift in Sources */,
 				60D16AAB290E8E8C006B20CD /* amplify/generated/models/WalkingCoordinate+Schema.swift in Sources */,
-				6031E254291B705A0072289B /* WalkingCoordinate+Schema.swift in Sources */,
 				60AB0EF428CDAC480095D921 /* AppleLoginViewController.swift in Sources */,
 				60EFE43F28CCE995001A272C /* WalkingCompleteModalView.swift in Sources */,
 				601FC20228CAF416008E02BD /* MainViewController.swift in Sources */,
 				6075116D28CE12070027D13F /* Backend.swift in Sources */,
+				60CF9F2429213EE500A75200 /* WalkingCoordinate+Schema.swift in Sources */,
 				60EFE43328CC6D7A001A272C /* AppColor.swift in Sources */,
 				601FC1FE28CAF416008E02BD /* AppDelegate.swift in Sources */,
 				60D16A8F290E6732006B20CD /* amplify/generated/models/MineUser+Schema.swift in Sources */,
 				60D16AAA290E8E8C006B20CD /* amplify/generated/models/MyProfile+Schema.swift in Sources */,
-				6031E24F291B705A0072289B /* AmplifyModels.swift in Sources */,
+				60CF9F1F29213EE500A75200 /* MyProfile+Schema.swift in Sources */,
 				60D16ABF290EAC47006B20CD /* NickNameViewController.swift in Sources */,
+				60CF9F2529213EE500A75200 /* WalkingCoordinate.swift in Sources */,
 				60EFE43128CC4F28001A272C /* MKMapView+Ext.swift in Sources */,
 				60D16AA8290E8E8C006B20CD /* amplify/generated/models/WalkingCoordinate.swift in Sources */,
 				6057F6C9291961540013D45E /* PathUtils.swift in Sources */,
 				601FC20028CAF416008E02BD /* SceneDelegate.swift in Sources */,
 				60EFE42D28CC4819001A272C /* MapViewController.swift in Sources */,
-				BA01552BF83F766610D089F5 /* (null) in Sources */,
-				6031E251291B705A0072289B /* PathPolygon+Schema.swift in Sources */,
+				60CF9F2129213EE500A75200 /* PathPolygon.swift in Sources */,
 				6031E256291B788A0072289B /* RankCollectionViewCell.swift in Sources */,
 				6057F6CB291964500013D45E /* HistoryCollectionViewCell.swift in Sources */,
-				94EF18345B900CA5FC1CB74A /* (null) in Sources */,
 				60214666291A12FC007D4FF5 /* amplify/generated/models/PathPolygon+Schema.swift in Sources */,
-				6031E253291B705A0072289B /* WalkingCoordinate.swift in Sources */,
 				60D16ABD290EA272006B20CD /* RankViewController.swift in Sources */,
 				60D16AB7290EA163006B20CD /* HistoryViewController.swift in Sources */,
 				60D16AB5290E974B006B20CD /* UIViewController+Ext.swift in Sources */,
 				6031E258291B82310072289B /* IndicatorView.swift in Sources */,
 				7195F3C43C134E281140D17C /* amplify/generated/models/MineUser.swift in Sources */,
 				05AE2B97FD80E7B23A56B99A /* MyProfile+Schema.swift in Sources */,
+				60CF9F2629213EE500A75200 /* PathPolygon+Schema.swift in Sources */,
+				60CF9F2029213EE500A75200 /* AmplifyModels.swift in Sources */,
 				6031E241291B62B10072289B /* amplify/generated/models/WalkingCoordinate+Schema.swift in Sources */,
 				351BE0B147BF116197548077 /* PathPolygon+Schema.swift in Sources */,
+				60CF9F0929213E4000A75200 /* amplify/generated/models/PathPolygon.swift in Sources */,
 				60357353291B1DD0009C21EA /* Date+Ext.swift in Sources */,
-				6031E252291B705A0072289B /* MyProfile+Schema.swift in Sources */,
 				ECBC794AFF8F36900FE51843 /* amplify/generated/models/PathPolygon.swift in Sources */,
 				48EB9F014D4BCDBBC92D83F3 /* amplify/generated/models/AmplifyModels.swift in Sources */,
 				07A5EC5AF7CB891540CE6187 /* MineUser+Schema.swift in Sources */,
@@ -764,8 +792,10 @@
 				547E41B32A330EA4CA758C25 /* amplify/generated/models/PathPolygon.swift in Sources */,
 				56AF174234D94281AD536964 /* amplify/generated/models/WalkingCoordinate+Schema.swift in Sources */,
 				6031E23F291B62B10072289B /* amplify/generated/models/MineUser.swift in Sources */,
+				60CF9F1429213E4000A75200 /* amplify/generated/models/WalkingCoordinate+Schema.swift in Sources */,
 				CB6AB4D371FD1DF359C37DE1 /* amplify/generated/models/WalkingCoordinate.swift in Sources */,
 				2918EF89650A676156EADC47 /* AmplifyModels.swift in Sources */,
+				60CF9F2329213EE500A75200 /* MineUser+Schema.swift in Sources */,
 				60357361291B21F7009C21EA /* amplify/generated/models/MineUser+Schema.swift in Sources */,
 				C324EE6DFCFFA9CBEAC6390E /* amplify/generated/models/MineUser+Schema.swift in Sources */,
 				6031E23A291B62B10072289B /* amplify/generated/models/MineUser+Schema.swift in Sources */,
@@ -775,6 +805,12 @@
 				6786E7F757C0E4D90BFAC964 /* amplify/generated/models/PathPolygon.swift in Sources */,
 				FB893BBBB3A4D5B47D4DA1D8 /* amplify/generated/models/MyProfile+Schema.swift in Sources */,
 				CEEBA991D8156E60F6B6A9B1 /* amplify/generated/models/PathPolygon+Schema.swift in Sources */,
+				60CF9F2229213EE500A75200 /* MyProfile.swift in Sources */,
+				8546335C92266F76E30FF0BA /* amplify/generated/models/PathPolygon+Schema.swift in Sources */,
+				2D4C0BCACD9B00F9CD98A4DD /* amplify/generated/models/WalkingCoordinate+Schema.swift in Sources */,
+				D70885FC79AA34773AFA26B2 /* amplify/generated/models/WalkingCoordinate.swift in Sources */,
+				0F91A3F497CD10DA78B96153 /* WalkingCoordinate+Schema.swift in Sources */,
+				8936CF5A40724187541B101E /* amplify/generated/models/MyProfile+Schema.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

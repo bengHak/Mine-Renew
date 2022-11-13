@@ -59,8 +59,22 @@
                                     <action selector="didTapInfoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jeA-6b-Pru"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LRZ-Hz-2VG">
+                                <rect key="frame" x="62" y="58.666666666666657" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="EQO-kh-MYR"/>
+                                    <constraint firstAttribute="height" constant="40" id="yLg-6c-8jh"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="question_button_icon">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapHelpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0hr-xP-02O"/>
+                                </connections>
+                            </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIe-wl-iRR">
-                                <rect key="frame" x="64" y="58.666666666666657" width="40" height="40"/>
+                                <rect key="frame" x="104" y="58.666666666666657" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="g2G-ph-Tyk"/>
                                     <constraint firstAttribute="width" constant="40" id="xLy-wz-ems"/>
@@ -80,15 +94,17 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mjI-fd-PkV" secondAttribute="trailing" constant="20" id="1ZQ-nz-FHX"/>
                             <constraint firstItem="pm2-N3-NwX" firstAttribute="centerY" secondItem="Xls-iF-ECR" secondAttribute="centerY" id="7Bn-8V-EqN"/>
                             <constraint firstItem="pm2-N3-NwX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7Fx-3e-s68"/>
-                            <constraint firstItem="eIe-wl-iRR" firstAttribute="leading" secondItem="pm2-N3-NwX" secondAttribute="trailing" constant="4" id="O6k-4U-815"/>
+                            <constraint firstItem="LRZ-Hz-2VG" firstAttribute="leading" secondItem="pm2-N3-NwX" secondAttribute="trailing" constant="2" id="F4Q-LX-hk3"/>
                             <constraint firstItem="Xls-iF-ECR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="4" id="SWt-sF-lR0"/>
                             <constraint firstAttribute="trailing" secondItem="zsP-rH-7IO" secondAttribute="trailing" id="aGl-re-tvJ"/>
                             <constraint firstItem="eIe-wl-iRR" firstAttribute="centerY" secondItem="pm2-N3-NwX" secondAttribute="centerY" id="aGt-pQ-cE0"/>
                             <constraint firstItem="mjI-fd-PkV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="bk0-bT-Y7S"/>
+                            <constraint firstItem="eIe-wl-iRR" firstAttribute="leading" secondItem="LRZ-Hz-2VG" secondAttribute="trailing" constant="2" id="dyk-s1-Ofb"/>
                             <constraint firstItem="zsP-rH-7IO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="feq-99-nP6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mjI-fd-PkV" secondAttribute="bottom" constant="20" id="pcX-DR-BOb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xls-iF-ECR" secondAttribute="trailing" constant="4" id="q7R-Ag-ZeT"/>
                             <constraint firstAttribute="bottom" secondItem="zsP-rH-7IO" secondAttribute="bottom" id="tnZ-Dx-Fsw"/>
+                            <constraint firstItem="LRZ-Hz-2VG" firstAttribute="centerY" secondItem="pm2-N3-NwX" secondAttribute="centerY" id="wao-Fc-62S"/>
                             <constraint firstItem="zsP-rH-7IO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="wvu-NU-dkg"/>
                             <constraint firstItem="mjI-fd-PkV" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="z0R-cd-XWb"/>
                         </constraints>
@@ -137,6 +153,7 @@
         <image name="history_button_icon" width="41" height="41"/>
         <image name="home_bg" width="390" height="844"/>
         <image name="info_button_icon" width="82" height="82"/>
+        <image name="question_button_icon" width="82" height="82"/>
         <image name="rank_button" width="96" height="41"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
