@@ -121,7 +121,10 @@ class Backend {
     func requestRanking(_ mondayDate: Date) -> Single<[MineUser]> {
         Single<[MineUser]>.create { single -> Disposable in
             let mineUser = MineUser.keys
-            Amplify.API.query(request: .list(MineUser.self,where: mineUser.totalAreaLastUpdate.gt(Temporal.Date(mondayDate)))) { event in
+            Amplify.API.query(request: .list(
+                MineUser.self,
+                where: mineUser.totalAreaLastUpdate.gt(Temporal.DateTime(mondayDate))
+            )) { event in
                 switch event {
                 case .success(let result):
                     switch result {
