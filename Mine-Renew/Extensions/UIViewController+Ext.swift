@@ -23,11 +23,11 @@ extension UIViewController {
         }
     }
     
-    func presentFullScreenModal(_ name: StoryBoardName) {
+    func presentFullScreenModal(_ name: StoryBoardName, animated: Bool = true) {
         let storyboard: UIStoryboard = UIStoryboard(name: name.rawValue, bundle: nil)
         if let vc: UIViewController = storyboard.instantiateInitialViewController() {
             vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: false)
+            self.present(vc, animated: animated)
         }
     }
     

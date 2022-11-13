@@ -27,16 +27,16 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMine()
+        mineLottie.loopMode = .loop
+        bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         requestAuthNoti()
-        mineLottie.loopMode = .loop
         mineLottie.play()
         listenAuthEvent()
         checkIsAuthenticated()
-        bind()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -60,7 +60,11 @@ final class MainViewController: UIViewController {
         if isSignedIn {
             pushViewControllerWithStoryBoard(.profile)
         } else {
-            pushViewControllerWithStoryBoard(.login)
+            if let vc: UIViewController = initUIViewControllerWithStoryBoard(.login) {
+                let nav: UINavigationController = .init(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                present(nav, animated: true)
+            }
         }
     }
     

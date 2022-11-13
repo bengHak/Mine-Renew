@@ -36,12 +36,11 @@ final class NickNameViewController: UIViewController {
         }
 
         let profileUUID: String = UUID().uuidString
-        let lastUpdate = Temporal.DateTime(Date())
         let user = MineUser(
             profileUuid: profileUUID,
             name: nickname,
             totalArea: 0,
-            totalAreaLastUpdate: lastUpdate,
+            totalAreaLastUpdate: Temporal.DateTime(Date(timeIntervalSince1970: 0)),
             currentWeekTotalArea: 0
         )
         
@@ -51,7 +50,7 @@ final class NickNameViewController: UIViewController {
             Backend.shared.addMyProfile(myProfile) { [weak self] result in
                 DispatchQueue.main.async {
                     if result {
-                        self?.navigationController?.popToRootViewController(animated: true)
+                        self?.dismiss(animated: true)
                     } else {
                         self?.showSignUpFailedAlert()
                     }
@@ -64,7 +63,7 @@ final class NickNameViewController: UIViewController {
         let alert = UIAlertController(title: "회원가입 실패", message: "회원가입에 실패했습니다.\n홈 화면으로 돌아갑니다.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
             DispatchQueue.main.async {
-                self?.navigationController?.popToRootViewController(animated: true)
+                self?.dismiss(animated: true)
             }
         }
         alert.addAction(okAction)

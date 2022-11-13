@@ -274,7 +274,7 @@ final class MapViewController: UIViewController {
         guard !isFinished,
               let startingCoordinate = startingCoordinate,
               let startTime = startTime,
-              startTime.timeIntervalSinceNow < -10 else {
+              startTime.timeIntervalSinceNow < -60 else {
             return
         }
         
@@ -384,7 +384,11 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
     func didTapSave() {
         Task { [weak self] in
             guard let self, let profile: MyProfile = await Backend.shared.asyncRequestProfile() else {
-                self?.pushViewControllerWithStoryBoard(.login)
+                if let vc: UIViewController = initUIViewControllerWithStoryBoard(.login) {
+                    let nav: UINavigationController = .init(rootViewController: vc)
+                    nav.modalPresentationStyle = .fullScreen
+                    present(nav, animated: true)
+                }
                 return
             }
             showIndicator()

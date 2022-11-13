@@ -32,7 +32,7 @@ final class AppleLoginViewController: UIViewController {
             guard success else { return }
             if success {
                 DispatchQueue.main.async {
-                    self?.navigationController?.popToRootViewController(animated: true)
+                    self?.dismiss(animated: true)
                 }
             }
         }
@@ -51,7 +51,7 @@ final class AppleLoginViewController: UIViewController {
     }
 
     @IBAction func didTapBackButton(_ sender: Any) {
-        self.navigationController?.popToRootViewController(animated: true)
+        dismiss(animated: true)
     }
     
     // MARK: - Helpers
@@ -77,7 +77,7 @@ final class AppleLoginViewController: UIViewController {
         Backend.shared.requestProfile { [weak self] profile in
             if profile != nil {
                 DispatchQueue.main.async {
-                    self?.navigationController?.popToRootViewController(animated: true)
+                    self?.dismiss(animated: true)
                 }
             } else {
                 DispatchQueue.main.async {
