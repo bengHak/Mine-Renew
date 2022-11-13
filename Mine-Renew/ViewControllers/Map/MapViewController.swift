@@ -199,7 +199,7 @@ final class MapViewController: UIViewController {
         feedbackGenerator.notificationOccurred(.success)
     }
 
-    func showAlert() {
+    func showSpeedAlert() {
         if isFinished { return }
         setTrackingDisabled()
         let alert = UIAlertController(title: "너무 빨라용", message: "초속 3미터 이하로 걸어주세요", preferredStyle: .alert)
@@ -212,6 +212,19 @@ final class MapViewController: UIViewController {
         present(alert, animated: true)
         feedbackGenerator.notificationOccurred(.warning)
         requestSendTooFastNoti()
+    }
+    
+    func showSignupAlert() {
+        let alert = UIAlertController(title: "인증 필요", message: "로그인 후 저장할 수 있습니다.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default) {  [weak self] _ in
+            if let vc: UIViewController = self?.initUIViewControllerWithStoryBoard(.login) {
+                let nav: UINavigationController = .init(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                self?.present(nav, animated: true)
+            }
+        }
+        alert.addAction(action)
+        present(alert, animated: true)
     }
     
     // MARK: - Send notification
@@ -384,11 +397,7 @@ extension MapViewController: WalkingCompleteModalViewDelegate {
     func didTapSave() {
         Task { [weak self] in
             guard let self, let profile: MyProfile = await Backend.shared.asyncRequestProfile() else {
-                if let vc: UIViewController = initUIViewControllerWithStoryBoard(.login) {
-                    let nav: UINavigationController = .init(rootViewController: vc)
-                    nav.modalPresentationStyle = .fullScreen
-                    present(nav, animated: true)
-                }
+                self?.showSignupAlert()
                 return
             }
             showIndicator()

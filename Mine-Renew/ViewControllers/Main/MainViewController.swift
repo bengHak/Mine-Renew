@@ -37,6 +37,7 @@ final class MainViewController: UIViewController {
         mineLottie.play()
         listenAuthEvent()
         checkIsAuthenticated()
+        showInitialHelpAlert()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,15 +69,8 @@ final class MainViewController: UIViewController {
         }
     }
     
-    @IBAction func didTapSignOut(_ sender: Any) {
-        Amplify.Auth.signOut() { result in
-            switch result {
-            case .success:
-                print("Successfully signed out")
-            case .failure(let error):
-                print("Sign out failed with error \(error)")
-            }
-        }
+    @IBAction func didTapHelpButton(_ sender: Any) {
+        showHelpAlert()
     }
     
     // MARK: - Helpers
@@ -95,7 +89,7 @@ final class MainViewController: UIViewController {
         UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
             switch settings.authorizationStatus {
             case .notDetermined:
-                self?.showAlert()
+                self?.showRequestNotificationAlert()
             case .authorized:
                 fallthrough
             case .denied:
@@ -110,7 +104,42 @@ final class MainViewController: UIViewController {
         }
     }
     
-    func showAlert() {
+    func showInitialHelpAlert() {
+        let key: String = "didShowHelpAlert"
+        if UserDefaults.standard.bool(forKey: key) {
+            return
+        }
+        showHelpAlert()
+        UserDefaults.standard.set(true, forKey: key)
+    }
+    
+    func showHelpAlert() {
+        let helpMessage: String = """
+        🏃
+        출발 지점으로 돌아오면 산책이 종료됩니다.
+        
+        ⌚️
+        산책은 1분 이상 해야 기록됩니다.
+        """
+        let alert = UIAlertController(title: "도움말", message: helpMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default) { _ in
+            DispatchQueue.main.async {
+                let notiAuthOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
+                UNUserNotificationCenter.current().requestAuthorization(options: notiAuthOptions) { (success, error) in
+                    if let error = error {
+                        print(#function, error)
+                    }
+                }
+            }
+        }
+        alert.addAction(action)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alert, animated: true)
+        }
+    }
+    
+    func showRequestNotificationAlert() {
         let alert = UIAlertController(title: "알림 권한 필요", message: "산책이 완료됐을 때 알림을 보내려면 알림 권한이 필요합니다.", preferredStyle: .alert)
         let action = UIAlertAction(title: "확인", style: .default) { _ in
             DispatchQueue.main.async {
